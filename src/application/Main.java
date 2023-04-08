@@ -17,9 +17,9 @@ public class Main extends Application{
 		//ส่วนที่เพิ่ม//////////////////////////////////////
 		
 		GridPane gp = new GridPane();
-		for (int i = 0; i<4 ; i++) {
+		for (int i = 0; i<25 ; i++) {
 			RootPane rp = new RootPane();
-			gp.add(rp, Math.round(i/2), i%2,1,1);
+			gp.add(rp, Math.round(i/5), i%5,1,1);
 		}
 		gp.setAlignment(Pos.CENTER);
 		StackPane sp = new StackPane();
