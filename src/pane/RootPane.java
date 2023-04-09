@@ -1,21 +1,17 @@
 package pane;
 
-
-import components.PaperBox;
-import javafx.geometry.Insets;
+import components.plate.Plate;
 import javafx.scene.layout.BorderPane;
 
 public class RootPane extends BorderPane {
-	private static PaperBox paperbox;
-	
+	private static Plate plate;
+
 	public RootPane() {
-		paperbox = new PaperBox();
-		this.setLeft(paperbox);
-		this.setPadding(new Insets(1,1,1,1));
+		plate = new Plate();
+		this.setCenter(plate);
 	}
 
-	public static PaperBox getPaperBox() {
-		return paperbox;
+	public static Plate getPlate() {
+		return plate;
 	}
 }
-

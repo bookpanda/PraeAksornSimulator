@@ -1,47 +1,16 @@
 package application;
 
-
-
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import pane.RootPane;
 
-public class Main extends Application{
-	
-	
+public class Main extends Application {
+
 	@Override
 	public void start(Stage stage) {
-//		RootPane rp = new RootPane();
-		
-		//ส่วนที่เพิ่ม//////////////////////////////////////
-		
-		GridPane gp = new GridPane();
-		for (int i = 0; i<25 ; i++) {
-			RootPane rp = new RootPane();
-			
-			gp.add(rp, Math.round(i/5), i%5,1,1);
-		}
-		gp.setAlignment(Pos.CENTER);
-		StackPane sp = new StackPane();
-//		ImageView bar = new ImageView
-//		sp.getChildren().add(bar);
-		sp.getChildren().add(gp);
-		
-		
-		
-		
-		StackPane.setAlignment(gp, Pos.CENTER);
-		
-		Scene scene = new Scene(sp, 800, 640);
-		//////////////////////////////////////////////
-		
-		
-//		Scene scene = new Scene(rp, 800, 640);
-		
+		RootPane rp = new RootPane();
+		Scene scene = new Scene(rp, 800, 640);
 		Stage stage1 = new Stage();
 		stage1.setTitle("PraeAksornSimulator");
 		stage1.setResizable(false);
@@ -52,5 +21,5 @@ public class Main extends Application{
 	public static void main(String[] args) {
 		launch();
 	}
-	
+
 }
