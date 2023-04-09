@@ -1,15 +1,18 @@
 package application;
 
+
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import pane.RootPane;
 
 public class Main extends Application{
+	
+	
 	@Override
 	public void start(Stage stage) {
 //		RootPane rp = new RootPane();
@@ -19,12 +22,17 @@ public class Main extends Application{
 		GridPane gp = new GridPane();
 		for (int i = 0; i<25 ; i++) {
 			RootPane rp = new RootPane();
+			
 			gp.add(rp, Math.round(i/5), i%5,1,1);
 		}
 		gp.setAlignment(Pos.CENTER);
 		StackPane sp = new StackPane();
+//		ImageView bar = new ImageView
+//		sp.getChildren().add(bar);
 		sp.getChildren().add(gp);
-		sp.resize(800, 640);
+		
+		
+		
 		
 		StackPane.setAlignment(gp, Pos.CENTER);
 		
@@ -44,4 +52,5 @@ public class Main extends Application{
 	public static void main(String[] args) {
 		launch();
 	}
+	
 }

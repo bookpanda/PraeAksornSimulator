@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
@@ -26,53 +28,23 @@ public class Paper extends HBox {
 	private int page = 0;
 
 	public Paper() {
-		this.setPrefHeight(70);
+		this.setPrefHeight(50);
 		this.setPrefWidth(100);
 		this.setStyle("-fx-background-color: " + colors[page] + ";");
+		
 		this.setSpacing(20);
+		
 		this.setAlignment(Pos.CENTER);
 		final Text text = new Text();
 		text.setText(Integer.toString(page + 1));
 		text.setStyle("-fx-font: 25 arial;");
-		Button btn = new Button();
-		btn.setText("Submit");
 		
 		
 		final Paper _self = this;
-		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.SECONDARY) {
-					System.out.println("Current Page = "+ (page));
-					if(page==0)page=30;
-					setPage(page - 1);
-					
-				
-				}else {
-					System.out.println("Current Page = "+ (page + 2));
-					setPage(page + 1);
-				}
-				text.setText(Integer.toString(page + 1));
-				
-				
-				boolean flag = true;
-				for (int a : textWhite) {
-					System.out.println(a + " " + page);
-					if (a == page) {
-						text.setFill(Color.WHITE);
-						flag = false;
-						break;
-					}
-				}
-				if (flag)
-					text.setFill(Color.BLACK);
-				_self.setStyle("-fx-background-color: " + colors[page] + ";");
-			}
-		});
-
-	
+		
 		this.getChildren().add(text);
 		
-		
+	
 		
 //		btn.setOnAction(new EventHandler<ActionEvent>() {
 //			public void handle(ActionEvent event) {
@@ -97,7 +69,7 @@ public class Paper extends HBox {
 //		this.getChildren().addAll(text, btn);
 		
 	}
-
+	
 	public int getPage() {
 		return page;
 	}
@@ -108,4 +80,5 @@ public class Paper extends HBox {
 	public String getColor() {
 		return colors[page];
 	}
+	
 }
