@@ -1,18 +1,18 @@
 package pane;
 
-import components.Paper;
+import components.Plate;
 import javafx.scene.layout.BorderPane;
 
 public class RootPane extends BorderPane {
-	private static Paper paper;
+	private static Plate plate;
 
 	public RootPane() {
-		paper = new Paper();
-		this.setLeft(getPaper());
+		plate = new Plate();
+		this.setCenter(plate);
 	}
 
-	public static Paper getPaper() {
-		return paper;
+	public static Plate getPlate() {
+		return plate;
 	}
 }
 

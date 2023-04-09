@@ -1,21 +1,12 @@
 package components;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import pane.RootPane;
 
 public class Paper extends HBox {
 	private String[] colors = { "#ffffff", "#4f76af", "#a6d5ff", "#404fff", "#8cb01b", "#36211d", "#90795a", "#6e3b2e",
@@ -34,29 +25,26 @@ public class Paper extends HBox {
 		final Text text = new Text();
 		text.setText(Integer.toString(page + 1));
 		text.setStyle("-fx-font: 25 arial;");
-		Button btn = new Button();
-		btn.setText("Submit");
-		
-		
+
 		final Paper _self = this;
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.SECONDARY) {
-					System.out.println("Current Page = "+ (page));
-					if(page==0)page=30;
-					setPage(page - 1);
-					
-				
-				}else {
-					System.out.println("Current Page = "+ (page + 2));
-					setPage(page + 1);
+				int multiplier = 1;
+				if (event.isShiftDown()) {
+					multiplier = (int) (Math.random() * 3 + 3);
+				} else if (event.isControlDown()) {
+					multiplier = (int) (Math.random() * 4 + 7);
+				}
+				if (event.getButton().equals(MouseButton.SECONDARY)) {
+					setPage(page - multiplier);
+
+				} else {
+					setPage(page + multiplier);
 				}
 				text.setText(Integer.toString(page + 1));
-				
-				
+
 				boolean flag = true;
 				for (int a : textWhite) {
-					System.out.println(a + " " + page);
 					if (a == page) {
 						text.setFill(Color.WHITE);
 						flag = false;
@@ -69,33 +57,7 @@ public class Paper extends HBox {
 			}
 		});
 
-	
 		this.getChildren().add(text);
-		
-		
-		
-//		btn.setOnAction(new EventHandler<ActionEvent>() {
-//			public void handle(ActionEvent event) {
-//				System.out.println(page + 1);
-//				setPage(page + 1);
-//				text.setText(Integer.toString(page + 1));
-//				boolean flag = true;
-//				for (int a : textWhite) {
-//					System.out.println(a + " " + page);
-//					if (a == page) {
-//						text.setFill(Color.WHITE);
-//						flag = false;
-//						break;
-//					}
-//				}
-//				if (flag)
-//					text.setFill(Color.BLACK);
-//				_self.setStyle("-fx-background-color: " + colors[page] + ";");
-//			}
-//		});
-
-//		this.getChildren().addAll(text, btn);
-		
 	}
 
 	public int getPage() {
@@ -103,9 +65,9 @@ public class Paper extends HBox {
 	}
 
 	public void setPage(int number) {
-		page = number % 30;
+		number = Math.max(0, number);
+		number = Math.min(29, number);
+		page = number;
 	}
-	public String getColor() {
-		return colors[page];
-	}
+
 }
