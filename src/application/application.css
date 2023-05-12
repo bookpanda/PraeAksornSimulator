@@ -1,0 +1,5 @@
+.bg {
+	-fx-background-image:url('kessoku.png');
+	-fx-background-repeat: no-repeat;
+  	-fx-background-size: auto;
+}
