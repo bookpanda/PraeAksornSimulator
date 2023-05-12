@@ -8,17 +8,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pane.RootPane;
 
 public class Scene1Controller {
-	 private Stage stage;
-	 private Scene scene;
-	 private Parent root;
-	 
-	 public void switchToScene2(ActionEvent event) throws IOException {
-	  root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
-	  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-	  scene = new Scene(root);
-	  stage.setScene(scene);
-	  stage.show();
-	 }
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
+
+	public void switchToScene2(ActionEvent event) throws IOException {
+		RootPane rp = new RootPane();
+		scene = new Scene(rp, 800, 640);
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("PraeAksornSimulator");
+		stage.setResizable(false);
+		stage.setScene(scene);
+		stage.show();
+	}
 }
