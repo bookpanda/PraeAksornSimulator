@@ -39,7 +39,7 @@ public class PaperAbove extends HBox {
 		return page;
 	}
 	public String getText() {
-		if (page == 0)return "cover";
+		if (page == 0)return "";
 		if (page == 31)return "";
 		return ""+page+"";
 	}

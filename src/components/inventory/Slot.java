@@ -1,5 +1,9 @@
 package components.inventory;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -13,9 +17,12 @@ public class Slot extends StackPane {
 	private boolean active;
 
 	public Slot(String item, boolean active) {
-		this.setPrefHeight(70);
-		this.setPrefWidth(70);
-		// this.getChildren().add(item);
+		this.setPrefHeight(80);
+		this.setPrefWidth(80);
+		Image image = new Image("images/items/" + item + ".png");
+		ImageView imageView = new ImageView();
+		imageView.setImage(image);
+		this.getChildren().add(imageView);
 		this.setActive(active);
 	}
 
@@ -33,13 +40,17 @@ public class Slot extends StackPane {
 
 	public void setActive(boolean active) {
 		this.active = active;
-		Color color;
+		Color borderColor;
+		Color bgColor;
 		if (active) {
-			color = Color.GRAY;
+			bgColor = Color.GRAY;
+			borderColor = Color.DARKGRAY;
 		} else {
-			color = Color.LIGHTGRAY;
+			bgColor = Color.LIGHTGRAY;
+			borderColor = Color.GRAY;
 		}
+		this.setBackground(new Background(new BackgroundFill(bgColor, null, getInsets())));
 		this.setBorder(new Border(
-				new BorderStroke(color, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+				new BorderStroke(borderColor, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 	}
 }
