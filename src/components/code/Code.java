@@ -22,8 +22,8 @@ public class Code {
 		codes.add(new Pair<>(new int[][] { { 12, 17, 24, 24, 24 }, { 17, 24, 24, 24, 24 }, { 24, 24, 24, 24, 24 },
 				{ 24, 24, 24, 24, 24 } }, "oshi_no_ko"));
 //		mao
-		codes.add(new Pair<>(new int[][] { { 6,6,29,6,29}, { 29,29,29,29,29 }, { 28,28,28,28,28 },
-				{ 28,28,28,28,28} }, "mao"));
+		codes.add(new Pair<>(new int[][] { { 6, 6, 29, 6, 29 }, { 29, 29, 29, 29, 29 }, { 28, 28, 28, 28, 28 },
+				{ 28, 28, 28, 28, 28 } }, "mao"));
 		return codes;
 	}
 
@@ -31,4 +31,3 @@ public class Code {
 		return codes.size();
 	}
 }
-
