@@ -10,12 +10,36 @@ import javafx.scene.paint.Color;
 
 public class Slot extends StackPane {
 	private String item;
-	public Slot(String item) {
-		this.setPrefHeight(50);
-		this.setPrefWidth(50);
-		this.setBorder(new Border(
-				new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-//		this.getChildren().add(item);
+	private boolean active;
+
+	public Slot(String item, boolean active) {
+		this.setPrefHeight(70);
+		this.setPrefWidth(70);
+		// this.getChildren().add(item);
+		this.setActive(active);
 	}
 
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+		Color color;
+		if (active) {
+			color = Color.GRAY;
+		} else {
+			color = Color.LIGHTGRAY;
+		}
+		this.setBorder(new Border(
+				new BorderStroke(color, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+	}
 }

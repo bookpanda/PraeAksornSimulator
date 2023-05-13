@@ -22,7 +22,7 @@ public class RootPane extends BorderPane {
 		inventory = new Inventory();
 		this.setTop(timer);
 		this.setCenter(plate);
-		BorderPane.setMargin(inventory, new Insets(0,0,20,0));
+		BorderPane.setMargin(inventory, new Insets(20,0,20,0));
 		this.setBottom(inventory);
 	}
 

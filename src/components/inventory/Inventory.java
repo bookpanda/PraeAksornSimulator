@@ -4,21 +4,23 @@ import java.util.ArrayList;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import javafx.util.Pair;
 
 public class Inventory extends HBox {
 	private int index;
 
 	public Inventory() {
-		this.setWidth(800);
+		this.setWidth(1000);
 		this.setAlignment(Pos.CENTER);
-		ArrayList<String> items = new ArrayList<String>();
-		items.add("plate");
-		items.add("paper");
-		items.add("water"); // depends on time
-		items.add("food"); // depends on flips
+		ArrayList<Pair<String, Boolean>> items = new ArrayList<Pair<String, Boolean>>();
+		items.add(new Pair<>("plate", true));
+		items.add(new Pair<>("paper", false));
+		items.add(new Pair<>("water", false));// depends on time
+		items.add(new Pair<>("food", true));// depends on flips
+	
 
-		for (String item : items) {
-			this.getChildren().add(new Slot(item));
+		for (Pair<String, Boolean> item : items) {
+			this.getChildren().add(new Slot(item.getKey(), item.getValue()));
 		}
 	}
 

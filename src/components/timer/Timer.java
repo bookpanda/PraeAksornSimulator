@@ -18,13 +18,13 @@ public class Timer extends VBox {
 			try {
 				while (seconds > 0) {
 					Thread.sleep(1000);
-					setSeconds(seconds - 1);
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
 							timeText.setText(String.valueOf(seconds));
 						}
 					});
+					setSeconds(seconds - 1);
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
