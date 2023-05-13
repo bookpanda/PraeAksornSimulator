@@ -7,7 +7,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 
 public class RootPane extends BorderPane {
 	private static Plate plate;
@@ -15,7 +18,7 @@ public class RootPane extends BorderPane {
 	private static Inventory inventory;
 
 	public RootPane() {
-
+		this.setBackground(new Background(new BackgroundFill(Color.LIMEGREEN, null, null)));
 		plate = new Plate();
 		timer = new Timer();
 		inventory = new Inventory();
