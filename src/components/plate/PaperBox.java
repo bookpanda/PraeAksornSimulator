@@ -45,4 +45,5 @@ public class PaperBox extends VBox {
 			}
 		});
 	}
+	
 }
