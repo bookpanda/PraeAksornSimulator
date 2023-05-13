@@ -1,37 +1,65 @@
 package components.timer;
 
+import components.code.CodeWrapper;
 import javafx.application.Platform;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import utils.MusicPlayer;
 
 public class Timer extends VBox {
+	private static Timer timer = null;
+	private CodeWrapper codeWrapper = CodeWrapper.getInstance();
 	private int seconds;
 	private boolean active;
+	Text timeText;
+	private Thread thread;
 
-	public Timer() {
+	private Timer() {
 		setSeconds(60);
+		timeText = new Text(String.valueOf(seconds));
 		Text text = new Text("Time left");
-		Text timeText = new Text(String.valueOf(seconds));
 		this.getChildren().addAll(text, timeText);
 
-		Thread thread = new Thread(() -> {
-			try {
-				while (seconds > 0) {
-					Thread.sleep(1000);
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							timeText.setText(String.valueOf(seconds));
-						}
-					});
-					setSeconds(seconds - 1);
-				}
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
+//		thread = new Thread(() -> {
+//			try {
+//				String codeName = codeWrapper.getCurrentCodeName();
+//				MusicPlayer.loadMusic(codeName);
+//				MusicPlayer.playMusic();
+//				while (seconds > 0) {
+//					Thread.sleep(1000);
+//					Platform.runLater(new Runnable() {
+//						@Override
+//						public void run() {
+//							timeText.setText(String.valueOf(seconds));
+//						}
+//					});
+//					setSeconds(seconds - 1);
+//				}
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		});
+	}
+
+	public static synchronized Timer getInstance() {
+		if (timer == null)
+			timer = new Timer();
+		return timer;
+	}
+
+	public void start() {
+		setSeconds(60);
+		codeWrapper.getNewIndex();
+		CodeRunnable cr = new CodeRunnable();
+		if (thread != null)
+			thread.interrupt();
+		thread = new Thread(cr);
 		thread.start();
+	}
+
+	public Text getTimeText() {
+		return timeText;
 	}
 
 	public int getSeconds() {
@@ -41,4 +69,5 @@ public class Timer extends VBox {
 	public void setSeconds(int seconds) {
 		this.seconds = seconds;
 	}
+
 }

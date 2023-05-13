@@ -2,6 +2,7 @@ package pane;
 
 import components.inventory.Inventory;
 import components.plate.Plate;
+import components.timer.StartButton;
 import components.timer.Timer;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,6 +11,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class RootPane extends BorderPane {
@@ -20,9 +22,12 @@ public class RootPane extends BorderPane {
 	public RootPane() {
 		this.setBackground(new Background(new BackgroundFill(Color.LIMEGREEN, null, null)));
 		plate = new Plate();
-		timer = new Timer();
+		VBox controlsBox = new VBox();
+		timer = Timer.getInstance();
+		StartButton startButton = new StartButton();
+		controlsBox.getChildren().addAll(timer, startButton);
 		inventory = new Inventory();
-		this.setTop(timer);
+		this.setTop(controlsBox);
 		this.setCenter(plate);
 		BorderPane.setMargin(inventory, new Insets(20, 0, 20, 0));
 		this.setBottom(inventory);
