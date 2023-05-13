@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class Paper extends PaperAbove {
-	private int[] textWhite = { 1, 3, 5, 7, 8, 14, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29 };
+	private int[] textWhite = { 2, 4, 6, 8, 9, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30 };
 	Text text = new Text();
 
 	public Paper() {
@@ -14,15 +14,16 @@ public class Paper extends PaperAbove {
 		this.setStyle("-fx-background-color: " + this.getColor() + ";");
 		this.setSpacing(20);
 		this.setAlignment(Pos.CENTER);
-		text.setText(Integer.toString(this.getPage() + 1));
+		text.setText(this.getText());
 		text.setStyle("-fx-font: 25 arial;");
 		this.getChildren().add(text);
-
+		this.setVisible(true);
+		
 	}
 
 	public void flipToPage(int number) {
 		super.flipToPage(number);
-		text.setText(Integer.toString(this.getPage() + 1));
+		text.setText(this.getText());
 		boolean flag = true;
 		for (int idx : textWhite) {
 			if (idx == this.getPage()) {
@@ -33,5 +34,10 @@ public class Paper extends PaperAbove {
 		}
 		if (flag)
 			text.setFill(Color.BLACK);
+		
+		this.setVisible(true);
+		if (this.getPage() >= 31) {
+			this.setVisible(false);
+		}
 	}
 }
