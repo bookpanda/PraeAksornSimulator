@@ -17,27 +17,6 @@ public class Timer extends VBox {
 		timeText = new Text(String.valueOf(seconds));
 		Text text = new Text("Time left");
 		this.getChildren().addAll(text, timeText);
-
-//		thread = new Thread(() -> {
-//			try {
-//				String codeName = codeWrapper.getCurrentCodeName();
-//				MusicPlayer.loadMusic(codeName);
-//				MusicPlayer.playMusic();
-//				while (seconds > 0) {
-//					Thread.sleep(1000);
-//					Platform.runLater(new Runnable() {
-//						@Override
-//						public void run() {
-//							timeText.setText(String.valueOf(seconds));
-//						}
-//					});
-//					setSeconds(seconds - 1);
-//				}
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		});
 	}
 
 	public static synchronized Timer getInstance() {

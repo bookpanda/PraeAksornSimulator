@@ -1,20 +1,21 @@
 package utils;
 
 import java.io.File;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class MusicPlayer {
+public class AmbiencePlayer {
 	private static Media media;
 	private static MediaPlayer mediaPlayer;
 
-	public static boolean loadMusic(String musicName) {
+	public static boolean loadSound(String ambienceName) {
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 		}
-		String musicPath = "src/music/codes/" + musicName + ".mp3";
+		String soundPath = "src/music/ambience/" + ambienceName + ".mp3";
 
-		media = new Media(new File(musicPath).toURI().toString());
+		media = new Media(new File(soundPath).toURI().toString());
 		if (media.getError() != null) {
 			return false;
 		}
@@ -22,9 +23,15 @@ public class MusicPlayer {
 		return true;
 	}
 
-	public static void playMusic() {
+	public static void playSound() {
 		if (mediaPlayer != null) {
 			mediaPlayer.play();
+		}
+	}
+
+	public static void stopSound() {
+		if (mediaPlayer != null) {
+			mediaPlayer.stop();
 		}
 	}
 }

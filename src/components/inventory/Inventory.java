@@ -1,35 +1,30 @@
 package components.inventory;
 
-import java.util.ArrayList;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import components.plate.Plate;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
-import javafx.util.Pair;
+import pane.RootPane;
 
 public class Inventory extends HBox {
 	private int index;
-	private ArrayList<Pair<String, Boolean>> items;
 
 	public Inventory() {
 		this.setWidth(1000);
 		this.setAlignment(Pos.CENTER);
-		items = new ArrayList<Pair<String, Boolean>>();
-		items.add(new Pair<>("plate", true));
-		items.add(new Pair<>("paper", false));
-		items.add(new Pair<>("water_bottle", false));// depends on time
-		items.add(new Pair<>("food", false));// depends on flips
-
-		for (Pair<String, Boolean> item : items) {
-			this.getChildren().add(new Slot(item.getKey(), item.getValue()));
-		}
-
+		Plate plate = Plate.getInstance();
+		WaterBottle waterBottle = WaterBottle.getInstance();
+		this.getChildren().add(new Slot(plate, "plate", true, "center"));
+		this.getChildren().add(new Slot(null, "paper", false, "center"));
+		this.getChildren().add(new Slot(waterBottle, "water_bottle", false, "right"));
+		this.getChildren().add(new Slot(null, "food", false, "right"));
 	}
+
+	public Slot getCurrentSlot() {
+		return ((Slot) this.getChildren().get(this.index));
+	}
+
 	public int getSize() {
-		return items.size();
+		return this.getChildren().size();
 	}
 
 	public int getIndex() {
@@ -37,14 +32,21 @@ public class Inventory extends HBox {
 	}
 
 	public void setIndex(int index) {
+		RootPane rp = RootPane.getInstance();
+		Slot prevSlot = ((Slot) this.getChildren().get(this.index));
+		prevSlot.setActive(false);
+		if (prevSlot.getPos() == "center") {
+			rp.setCenter(null);
+		} else if (prevSlot.getPos() == "right") {
+			rp.setRight(null);
+		}
 		this.index = index;
-		int i = 0;
-		for (Node item : this.getChildren()) {
-			if (i != index)
-				((Slot) item).setActive(false);
-			else
-				((Slot) item).setActive(true);
-			i += 1;
+		Slot newSlot = ((Slot) this.getChildren().get(this.index));
+		newSlot.setActive(true);
+		if (newSlot.getPos() == "center") {
+			rp.setCenter(newSlot.getItem());
+		} else if (newSlot.getPos() == "right") {
+			rp.setRight(newSlot.getItem());
 		}
 	}
 
