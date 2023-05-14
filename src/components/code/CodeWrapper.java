@@ -46,4 +46,8 @@ public class CodeWrapper {
 	public void setCodes(ArrayList<Pair<int[][], String>> codes) {
 		this.codes = codes;
 	}
+
+	public ArrayList<Pair<int[][], String>> getCodes() {
+		return this.codes;
+	}
 }

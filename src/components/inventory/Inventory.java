@@ -1,5 +1,6 @@
 package components.inventory;
 
+import components.code.CodePaper;
 import components.plate.Plate;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -12,11 +13,13 @@ public class Inventory extends HBox {
 		this.setWidth(1000);
 		this.setAlignment(Pos.CENTER);
 		Plate plate = Plate.getInstance();
+		CodePaper codePaper = CodePaper.getInstance();
 		WaterBottle waterBottle = WaterBottle.getInstance();
+		Food food = Food.getInstance();
 		this.getChildren().add(new Slot(plate, "plate", true, "center"));
-		this.getChildren().add(new Slot(null, "paper", false, "center"));
+		this.getChildren().add(new Slot(codePaper, "paper", false, "center"));
 		this.getChildren().add(new Slot(waterBottle, "water_bottle", false, "right"));
-		this.getChildren().add(new Slot(null, "food", false, "right"));
+		this.getChildren().add(new Slot(food, "food", false, "right"));
 	}
 
 	public Slot getCurrentSlot() {

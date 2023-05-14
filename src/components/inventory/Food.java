@@ -2,21 +2,16 @@ package components.inventory;
 
 import components.stats.StatsBar;
 import components.stats.ThirstBar;
-import components.timer.CodeRunnable;
-import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
-public class WaterBottle extends HBox implements Item {
-	private static WaterBottle waterBottle = null;
+public class Food extends HBox implements Item {
+	private static Food food = null;
 	private Thread thread;
 
-	private WaterBottle() {
-		Image image = new Image("images/items/water_bottle_active.png");
+	private Food() {
+		Image image = new Image("images/items/food_active.png");
 
 		ImageView imageView = new ImageView();
 		imageView.setPreserveRatio(true);
@@ -24,8 +19,8 @@ public class WaterBottle extends HBox implements Item {
 		imageView.setRotate(-15);
 		imageView.setFitHeight(400);
 		imageView.setImage(image);
-		imageView.setTranslateX(-80);
-		imageView.setTranslateY(330);
+		imageView.setTranslateX(50);
+		imageView.setTranslateY(400);
 		this.getChildren().add(imageView);
 	}
 
@@ -41,10 +36,10 @@ public class WaterBottle extends HBox implements Item {
 			thread.interrupt();
 	}
 
-	public static WaterBottle getInstance() {
-		if (waterBottle == null) {
-			waterBottle = new WaterBottle();
+	public static Food getInstance() {
+		if (food == null) {
+			food = new Food();
 		}
-		return waterBottle;
+		return food;
 	}
 }
