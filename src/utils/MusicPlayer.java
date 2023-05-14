@@ -12,9 +12,7 @@ public class MusicPlayer {
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 		}
-		String musicPath = "src/music/codes/" + "kessoku" + ".mp3";
-
-//		media = new Media(new File(musicPath).toURI().toString());
+		String musicPath = "src/music/codes/" + musicName + ".mp3";
 
 		media = new Media(new File(musicPath).toURI().toString());
 		if (media.getError() != null) {

@@ -1,10 +1,8 @@
 package components.timer;
 
 import components.code.CodeWrapper;
-import javafx.application.Platform;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import utils.MusicPlayer;
 
 public class Timer extends VBox {
 	private static Timer timer = null;

@@ -14,10 +14,9 @@ import pane.RootPane;
 public class Scene1Controller {
 	private Stage stage;
 	private Scene scene;
-	private Parent root;
 
 	public void switchToScene2(ActionEvent event) throws IOException {
-		RootPane rp = new RootPane();
+		RootPane rp = RootPane.getInstance();
 		scene = new Scene(rp, 1000, 700);
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("PraeAksornSimulator");
