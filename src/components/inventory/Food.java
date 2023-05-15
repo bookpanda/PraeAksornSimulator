@@ -1,5 +1,6 @@
 package components.inventory;
 
+import components.stats.HungerBar;
 import components.stats.StatsBar;
 import components.stats.ThirstBar;
 import javafx.scene.image.Image;
@@ -25,8 +26,8 @@ public class Food extends HBox implements Item {
 	}
 
 	public void use() {
-		ThirstBar thirstBar = ThirstBar.getInstance();
-		UseRunnable ur = new UseRunnable((StatsBar) thirstBar);
+		HungerBar hungerBar = HungerBar.getInstance();
+		UseRunnable ur = new UseRunnable((StatsBar) hungerBar);
 		thread = new Thread(ur);
 		thread.start();
 	}

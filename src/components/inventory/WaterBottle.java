@@ -2,14 +2,9 @@ package components.inventory;
 
 import components.stats.StatsBar;
 import components.stats.ThirstBar;
-import components.timer.CodeRunnable;
-import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
 public class WaterBottle extends HBox implements Item {
 	private static WaterBottle waterBottle = null;

@@ -3,6 +3,8 @@ package pane;
 import components.inventory.Inventory;
 import components.inventory.Item;
 import components.plate.Plate;
+import components.stats.HungerBar;
+import components.stats.ThirstBar;
 import components.timer.StartButton;
 import components.timer.Timer;
 import javafx.event.EventHandler;
@@ -15,6 +17,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class RootPane extends BorderPane {
 	private static RootPane rootPane = null;
@@ -29,10 +32,18 @@ public class RootPane extends BorderPane {
 		StartButton startButton = new StartButton();
 		controlsBox.getChildren().addAll(timer, startButton);
 		inventory = new Inventory();
-		this.setTop(controlsBox);
-		Plate plate = Plate.getInstance();
-		this.setCenter(plate);
 		BorderPane.setMargin(inventory, new Insets(8, 0, 8, 0));
+		Plate plate = Plate.getInstance();
+		VBox statsBox = new VBox();
+		statsBox.setPrefWidth(220);
+		Text hungerText = new Text("Hunger");
+		HungerBar hungerBar = HungerBar.getInstance();
+		Text thirstText = new Text("Thirst");
+		ThirstBar thirstBar = ThirstBar.getInstance();
+		statsBox.getChildren().addAll(hungerText, hungerBar, thirstText, thirstBar);
+		this.setTop(controlsBox);
+		this.setLeft(statsBox);
+		this.setCenter(plate);
 		this.setBottom(inventory);
 
 		this.setOnScroll(new EventHandler<ScrollEvent>() {

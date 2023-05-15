@@ -1,6 +1,8 @@
 package components.timer;
 
 import components.code.CodeWrapper;
+import components.stats.HungerRunnable;
+import components.stats.ThirstRunnable;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -10,7 +12,9 @@ public class Timer extends VBox {
 	private int seconds;
 	private boolean active;
 	Text timeText;
-	private Thread thread;
+	private Thread timeThread;
+	private Thread thirstThread;
+	private Thread hungerThread;
 
 	private Timer() {
 		setSeconds(60);
@@ -29,10 +33,16 @@ public class Timer extends VBox {
 		setSeconds(60);
 		codeWrapper.getNewIndex();
 		CodeRunnable cr = new CodeRunnable();
-		if (thread != null)
-			thread.interrupt();
-		thread = new Thread(cr);
-		thread.start();
+		ThirstRunnable tr = new ThirstRunnable();
+		HungerRunnable hr = new HungerRunnable();
+		if (timeThread != null)
+			timeThread.interrupt();
+		timeThread = new Thread(cr);
+		timeThread.start();
+		thirstThread = new Thread(tr);
+		thirstThread.start();
+		hungerThread = new Thread(hr);
+		hungerThread.start();
 	}
 
 	public Text getTimeText() {

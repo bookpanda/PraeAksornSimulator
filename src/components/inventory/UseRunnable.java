@@ -19,6 +19,7 @@ public class UseRunnable extends Thread {
 			try {
 				System.out.println("+1 drink");
 				Thread.sleep(1000);
+				statsBar.replenish();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
