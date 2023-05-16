@@ -53,8 +53,9 @@ public class RowOfPaper extends StackPane {
 //		
 //		});
 		rubber.setOnMouseDragged(e -> {
+			System.out.println(e.getSceneY());
 			currentX = Math.max(Math.min(e.getSceneX(), startDragX + 55), startDragX - 41);
-			currentY = Math.max(Math.min(e.getSceneY()-50, 540), 0);
+			currentY = Math.max(Math.min(e.getSceneY()-88, 540), 0);
 
 			drawLine(currentX - startDragX + 51 - 8, currentY);
 		});
