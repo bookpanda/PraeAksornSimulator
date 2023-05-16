@@ -9,6 +9,7 @@ import components.timer.StartButton;
 import components.timer.Timer;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -16,6 +17,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -26,7 +28,7 @@ public class RootPane extends BorderPane {
 
 	private RootPane() {
 		System.out.println("s");
-		this.setBackground(new Background(new BackgroundFill(Color.LIMEGREEN, null, null)));
+		this.setBackground(new Background(new BackgroundFill(Color.LIGHTPINK, null, null)));
 		VBox controlsBox = new VBox();
 		timer = Timer.getInstance();
 		StartButton startButton = new StartButton();
@@ -41,10 +43,12 @@ public class RootPane extends BorderPane {
 		Text thirstText = new Text("Thirst");
 		ThirstBar thirstBar = ThirstBar.getInstance();
 		statsBox.getChildren().addAll(hungerText, hungerBar, thirstText, thirstBar);
+		StackPane bottom = new StackPane();
+		bottom.getChildren().addAll(statsBox,inventory);
+		bottom.setAlignment(inventory, Pos.CENTER);
 		this.setTop(controlsBox);
-		this.setLeft(statsBox);
 		this.setCenter(plate);
-		this.setBottom(inventory);
+		this.setBottom(bottom);
 
 		this.setOnScroll(new EventHandler<ScrollEvent>() {
 			public void handle(ScrollEvent event) {
