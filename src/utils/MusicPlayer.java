@@ -27,7 +27,7 @@ public class MusicPlayer {
 			mediaPlayer.play();
 		}
 	}
-	
+
 	public static void pauseMusic() {
 		if (mediaPlayer != null) {
 			mediaPlayer.pause();

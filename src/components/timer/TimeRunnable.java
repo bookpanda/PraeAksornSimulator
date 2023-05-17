@@ -27,33 +27,31 @@ public class TimeRunnable implements Runnable {
 	private Plate plate = Plate.getInstance();
 	private Score score = Score.getInstance();
 	private int points;
-	private volatile boolean paused = false;
-	private final Object pauseLock = new Object();
+	private int seconds;
+	private boolean isFromPaused;
 
+	public TimeRunnable(int seconds, boolean isFromPaused) {
+		this.seconds = seconds;
+		this.isFromPaused = isFromPaused;
+	}
+
+	@Override
 	public void run() {
 		try {
 			for (int i = 0; i < 5; i++) {
-				timer.setSeconds(60);
-				codeWrapper.getNewIndex();
+				timer.setSeconds(seconds);
 				String codeName = codeWrapper.getCurrentCodeName();
 				BackgroundImage bi = new BackgroundImage(
 						new Image("images/" + codeName + "_stand.png", 1000, 700, false, true), BackgroundRepeat.REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 				rootPane.setBackground(new Background(bi));
-				MusicPlayer.loadMusic(codeName);
+				if (!isFromPaused) {
+					MusicPlayer.loadMusic(codeName);
+					isFromPaused = false;
+				}
 				MusicPlayer.playMusic();
 				int[][] currentCode = codeWrapper.getCurrentCode();
 				while (timer.getSeconds() > 0) {
-					boolean active = timer.isActive();
-//					if (active)
-//						pause();
-//					if (paused) {
-//						try {
-//							pauseLock.wait();
-//						} catch (InterruptedException ex) {
-//							break;
-//						}
-//					}
 					Pair<Boolean, Integer> result = calculateScore(currentCode);
 					boolean isPlateComplete = result.getKey();
 					points = result.getValue();
@@ -75,17 +73,6 @@ public class TimeRunnable implements Runnable {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-
-	public void pause() {
-		paused = true;
-	}
-
-	public void resume() {
-		synchronized (pauseLock) {
-			paused = false;
-			pauseLock.notifyAll();
 		}
 	}
 

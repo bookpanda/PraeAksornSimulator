@@ -46,13 +46,16 @@ public class Timer extends VBox {
 		startButton.setText("Restart");
 		codeWrapper = CodeWrapper.getInstance();
 		codeWrapper.reset();
+		codeWrapper.getNewIndex();
 		score = Score.getInstance();
 		score.setPoints(0);
 		this.active = true;
-		TimeRunnable timer = new TimeRunnable();
+		TimeRunnable timer = new TimeRunnable(60, false);
 		tb = ThirstBar.getInstance();
+		tb.setStats(200);
 		StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
 		hb = HungerBar.getInstance();
+		hb.setStats(200);
 		StatsRunnable hr = new StatsRunnable(hb, hb.getStats(), 500);
 		if (timeThread != null)
 			timeThread.interrupt();
@@ -73,9 +76,26 @@ public class Timer extends VBox {
 		if (this.active) {
 			pauseButton.setText("Resume");
 			MusicPlayer.pauseMusic();
+			if (timeThread != null)
+				timeThread.interrupt();
+			if (thirstThread != null)
+				thirstThread.interrupt();
+			if (hungerThread != null)
+				hungerThread.interrupt();
+
 		} else {
 			pauseButton.setText("Pause");
-			MusicPlayer.playMusic();
+			TimeRunnable timer = new TimeRunnable(this.getSeconds(), true);
+			tb = ThirstBar.getInstance();
+			StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
+			hb = HungerBar.getInstance();
+			StatsRunnable hr = new StatsRunnable(hb, hb.getStats(), 500);
+			timeThread = new Thread(timer);
+			timeThread.start();
+			thirstThread = new Thread(tr);
+			thirstThread.start();
+			hungerThread = new Thread(hr);
+			hungerThread.start();
 		}
 		this.active = !this.active;
 	}
@@ -103,7 +123,7 @@ public class Timer extends VBox {
 		if (timeText != null)
 			timeText.setText(String.valueOf(seconds));
 	}
-	
+
 	public boolean isActive() {
 		return this.active;
 	}
