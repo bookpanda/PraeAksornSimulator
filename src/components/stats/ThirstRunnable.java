@@ -11,6 +11,7 @@ public class ThirstRunnable implements Runnable {
 			thirst = thirstBar.getThirst();
 			while (thirst > 0) {
 				Thread.sleep(300);
+				thirst = thirstBar.getThirst();
 				thirstBar.setThirst(thirst - 1);
 				thirst = thirstBar.getThirst();
 				Platform.runLater(new Runnable() {

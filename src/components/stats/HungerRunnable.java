@@ -10,8 +10,9 @@ public class HungerRunnable implements Runnable {
 		try {
 			hunger = hungerBar.getHunger();
 			while (hunger > 0) {
-				Thread.sleep(2000);
-				hungerBar.setHunger(hunger - 10);
+				Thread.sleep(500);
+				hunger = hungerBar.getHunger();
+				hungerBar.setHunger(hunger - 1);
 				hunger = hungerBar.getHunger();
 				Platform.runLater(new Runnable() {
 					@Override

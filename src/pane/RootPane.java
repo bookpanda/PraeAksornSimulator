@@ -35,7 +35,7 @@ public class RootPane extends BorderPane {
 		BorderPane.setMargin(inventory, new Insets(8, 0, 8, 0));
 		Plate plate = Plate.getInstance();
 		VBox statsBox = new VBox();
-		statsBox.setPrefWidth(220);
+		statsBox.setPrefWidth(200);
 		Text hungerText = new Text("Hunger");
 		HungerBar hungerBar = HungerBar.getInstance();
 		Text thirstText = new Text("Thirst");
