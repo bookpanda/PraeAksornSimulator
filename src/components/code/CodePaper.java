@@ -28,8 +28,9 @@ public class CodePaper extends GridPane {
 			cou += 1;
 		}
 		this.setAlignment(Pos.CENTER);
-		this.setMinWidth(700);
-		this.setMaxWidth(700);
+		this.setMinWidth(500);
+		this.setMaxWidth(500);
+		this.setMaxHeight(500);
 		this.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, null, null)));
 	}
 

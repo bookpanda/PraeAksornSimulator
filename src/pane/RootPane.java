@@ -33,14 +33,15 @@ public class RootPane extends BorderPane {
 	private static Inventory inventory;
 
 	private RootPane() {
-		BackgroundImage bi = new BackgroundImage(
-				new Image("images/start_stand.png", 1000, 700, false, true), BackgroundRepeat.REPEAT,
-				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage bi = new BackgroundImage(new Image("images/start_stand.png", 1000, 700, false, true),
+				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+				BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bi));
 		VBox controlsBox = new VBox();
 		timer = Timer.getInstance();
 		StartButton startButton = new StartButton();
-		controlsBox.getChildren().addAll(timer, startButton);
+		ScorePane scorePane = ScorePane.getInstance();
+		controlsBox.getChildren().addAll(scorePane, timer, startButton);
 		inventory = new Inventory();
 		BorderPane.setMargin(inventory, new Insets(8, 0, 8, 0));
 		Plate plate = Plate.getInstance();
@@ -48,11 +49,9 @@ public class RootPane extends BorderPane {
 		statsBox.setPrefWidth(200);
 		Text hungerText = new Text("Hunger");
 		hungerText.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
-		hungerText.setFill(Color.WHITE);
 		HungerBar hungerBar = HungerBar.getInstance();
 		Text thirstText = new Text("Thirst");
 		thirstText.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
-		thirstText.setFill(Color.WHITE);
 		ThirstBar thirstBar = ThirstBar.getInstance();
 		statsBox.getChildren().addAll(hungerText, hungerBar, thirstText, thirstBar);
 		StackPane bottom = new StackPane();

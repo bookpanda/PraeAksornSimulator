@@ -25,9 +25,9 @@ public class Plate extends StackPane {
 			RowOfPaper rowofPaper = new RowOfPaper();
 			gp.add(rowofPaper, i, 0);
 		}
-		gp.setAlignment(Pos.BOTTOM_CENTER);
+		gp.setAlignment(Pos.CENTER);
 		this.getChildren().add(frameview);
-		StackPane.setAlignment(frameview, Pos.BOTTOM_CENTER);
+		StackPane.setAlignment(frameview, Pos.CENTER);
 		this.getChildren().add(gp);
 		this.setAlignment(Pos.CENTER);
 	}

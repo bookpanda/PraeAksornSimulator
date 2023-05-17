@@ -14,7 +14,7 @@ public class Scene1Controller {
 
 	public void switchToScene2(ActionEvent event) throws IOException {
 		RootPane rp = RootPane.getInstance();
-		scene = new Scene(rp, 1000, 700);
+		scene = new Scene(rp, 1000, 800);
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("PraeAksornSimulator");
 		stage.setResizable(false);

@@ -15,7 +15,10 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 import pane.RootPane;
+import pane.ScorePane;
+import score.Score;
 import utils.MusicPlayer;
 
 public class TimeRunnable implements Runnable {
@@ -23,6 +26,9 @@ public class TimeRunnable implements Runnable {
 	private Timer timer = Timer.getInstance();
 	private RootPane rootPane = RootPane.getInstance();
 	private Plate plate = Plate.getInstance();
+	private Score score = Score.getInstance();
+	private ScorePane scorePane = ScorePane.getInstance();
+	private int points;
 
 	public void run() {
 		try {
@@ -36,38 +42,13 @@ public class TimeRunnable implements Runnable {
 				rootPane.setBackground(new Background(bi));
 				MusicPlayer.loadMusic(codeName);
 				MusicPlayer.playMusic();
+				int[][] currentCode = codeWrapper.getCurrentCode();
 				while (timer.getSeconds() > 0) {
-					int[][] currentCode = codeWrapper.getCurrentCode();
-					GridPane gp = (GridPane) plate.getChildren().get(1);
-					int flag = 0;
-					int col = 0;
-					for (Node node : gp.getChildren()) {
-						int row = 0;
-						System.out.println("child of gp");
-						RowOfPaper rop = (RowOfPaper) node; // 4 paper
-						VBox vbox = (VBox) rop.getChildren().get(0);
-						for (Node n : vbox.getChildren()) {
-							if (row > 3)
-								break;
-							PaperBox pb = (PaperBox) n;
-							Paper p = (Paper) pb.getChildren().get(1);
-							System.out.println("row: " + row + "   col: " + col);
-							System.out.println("page: " + p.getPage() + "   code: " + currentCode[row][col]);
-							if (p.getPage() != currentCode[row][col]) {
-								flag = 1;
-								break;
-							}
-							row += 1;
-						}
-						col += 1;
-						if (flag == 1) {
-							break;
-						}
-					}
-					if (flag == 0) {
-						System.out.println("pass");
+					Pair<Boolean, Integer> result = calculateScore(currentCode);
+					boolean isPlateComplete = result.getKey();
+					points = result.getValue();
+					if (isPlateComplete) {
 						break;
-						
 					}
 					Thread.sleep(1000);
 					Platform.runLater(new Runnable() {
@@ -78,10 +59,45 @@ public class TimeRunnable implements Runnable {
 					});
 					timer.setSeconds(timer.getSeconds() - 1);
 				}
+				score.setPoints(score.getPoints() + points);
+				System.out.println("points : " + points);
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						scorePane.setScoreText(points);
+					}
+				});
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public Pair<Boolean, Integer> calculateScore(int[][] currentCode) {
+		GridPane gp = (GridPane) plate.getChildren().get(1);
+		int point = 0;
+		boolean flag = true;
+		int col = 0;
+		for (Node node : gp.getChildren()) {
+			int row = 0;
+			RowOfPaper rop = (RowOfPaper) node; // 4 paper
+			VBox vbox = (VBox) rop.getChildren().get(0);
+			for (Node n : vbox.getChildren()) {
+				if (row > 3)
+					break;
+				PaperBox pb = (PaperBox) n;
+				Paper p = (Paper) pb.getChildren().get(1);
+				if (p.getPage() != currentCode[row][col]) {
+					flag = false;
+				} else {
+					point += 500;
+				}
+				row += 1;
+			}
+			col += 1;
+		}
+		point += Math.floor(point * ((double) timer.getSeconds() / 60));
+		return new Pair<Boolean, Integer>(flag, point);
 	}
 }
