@@ -27,7 +27,7 @@ public class HungerBar extends HBox implements StatsBar {
 
 	public void replenish() {
 		this.setHunger(Math.max(0, Math.min(200, hunger + 40)));
-		this.setMaxWidth(Math.max(0, Math.min(200, hunger + 40)));
+		this.setWidth(Math.max(0, Math.min(200, hunger + 40)));
 	}
 
 	public int getHunger() {

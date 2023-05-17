@@ -24,6 +24,9 @@ public class Code {
 //		mao
 		codes.add(new Pair<>(new int[][] { { 6, 6, 29, 6, 29 }, { 29, 29, 29, 29, 29 }, { 28, 28, 28, 28, 28 },
 				{ 28, 28, 28, 28, 28 } }, "mao"));
+//		test
+		codes.add(new Pair<>(new int[][] { { 0, 0, 0, 0, 0 }, { 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } },
+				"test"));
 		return codes;
 	}
 

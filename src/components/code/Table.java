@@ -14,7 +14,7 @@ public class Table extends GridPane {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 5; j++) {
 				Text text = new Text(String.valueOf(this.code[i][j]));
-				this.add(text, i, j);
+				this.add(text, j, i);
 			}
 		}
 		this.setHgap(5);

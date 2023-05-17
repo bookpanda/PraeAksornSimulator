@@ -30,17 +30,21 @@ public class Timer extends VBox {
 	}
 
 	public void start() {
-		setSeconds(60);
-		codeWrapper.getNewIndex();
-		CodeRunnable cr = new CodeRunnable();
+//		setSeconds(60);
+//		codeWrapper.getNewIndex();
+		TimeRunnable timer = new TimeRunnable();
 		ThirstRunnable tr = new ThirstRunnable();
 		HungerRunnable hr = new HungerRunnable();
 		if (timeThread != null)
 			timeThread.interrupt();
-		timeThread = new Thread(cr);
+		timeThread = new Thread(timer);
 		timeThread.start();
+		if (thirstThread != null)
+			thirstThread.interrupt();
 		thirstThread = new Thread(tr);
 		thirstThread.start();
+		if (hungerThread != null)
+			hungerThread.interrupt();
 		hungerThread = new Thread(hr);
 		hungerThread.start();
 	}

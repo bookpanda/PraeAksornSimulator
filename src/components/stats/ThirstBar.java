@@ -27,7 +27,7 @@ public class ThirstBar extends HBox implements StatsBar {
 
 	public void replenish() {
 		this.setThirst(Math.max(0, Math.min(200, thirst + 10)));
-		this.setMaxWidth(Math.max(0, Math.min(200, thirst + 10)));
+		this.setWidth(Math.max(0, Math.min(200, thirst + 10)));
 	}
 
 	public int getThirst() {

@@ -11,10 +11,14 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.StackPane;
@@ -29,8 +33,10 @@ public class RootPane extends BorderPane {
 	private static Inventory inventory;
 
 	private RootPane() {
-		System.out.println("s");
-		this.setBackground(new Background(new BackgroundFill(Color.LIGHTPINK, null, null)));
+		BackgroundImage bi = new BackgroundImage(
+				new Image("images/start_stand.png", 1000, 700, false, true), BackgroundRepeat.REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		this.setBackground(new Background(bi));
 		VBox controlsBox = new VBox();
 		timer = Timer.getInstance();
 		StartButton startButton = new StartButton();
