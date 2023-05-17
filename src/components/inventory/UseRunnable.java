@@ -17,7 +17,6 @@ public class UseRunnable extends Thread {
 		AmbiencePlayer.playSound();
 //		while (!Thread.currentThread().isInterrupted()) {
 			try {
-				System.out.println("+1 drink");
 				Thread.sleep(1000);
 				statsBar.replenish();
 			} catch (InterruptedException e) {

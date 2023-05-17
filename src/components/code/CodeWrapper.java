@@ -8,7 +8,6 @@ public class CodeWrapper {
 	private int index;
 	private ArrayList<Pair<int[][], String>> codes;
 	private Code c = new Code();
-
 	private static CodeWrapper codeWrapper = null;
 
 	private CodeWrapper() {
@@ -28,6 +27,10 @@ public class CodeWrapper {
 		int newIndex = (int) (Math.random() * c.getSize());
 		setIndex(newIndex);
 		return newIndex;
+	}
+	
+	public void reset() {
+		setCodes(c.main());
 	}
 
 	public int[][] getCurrentCode() {

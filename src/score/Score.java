@@ -1,6 +1,9 @@
 package score;
 
+import pane.ScorePane;
+
 public class Score {
+	private ScorePane scorePane = ScorePane.getInstance();
 	private static Score score = null;
 	private int points;
 
@@ -20,6 +23,7 @@ public class Score {
 	}
 
 	public void setPoints(int points) {
+		scorePane.setScoreText(points);
 		this.points = points;
 	}
 

@@ -17,7 +17,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import pane.RootPane;
-import pane.ScorePane;
 import score.Score;
 import utils.MusicPlayer;
 
@@ -27,8 +26,9 @@ public class TimeRunnable implements Runnable {
 	private RootPane rootPane = RootPane.getInstance();
 	private Plate plate = Plate.getInstance();
 	private Score score = Score.getInstance();
-	private ScorePane scorePane = ScorePane.getInstance();
 	private int points;
+	private volatile boolean paused = false;
+	private final Object pauseLock = new Object();
 
 	public void run() {
 		try {
@@ -44,6 +44,16 @@ public class TimeRunnable implements Runnable {
 				MusicPlayer.playMusic();
 				int[][] currentCode = codeWrapper.getCurrentCode();
 				while (timer.getSeconds() > 0) {
+					boolean active = timer.isActive();
+//					if (active)
+//						pause();
+//					if (paused) {
+//						try {
+//							pauseLock.wait();
+//						} catch (InterruptedException ex) {
+//							break;
+//						}
+//					}
 					Pair<Boolean, Integer> result = calculateScore(currentCode);
 					boolean isPlateComplete = result.getKey();
 					points = result.getValue();
@@ -61,16 +71,21 @@ public class TimeRunnable implements Runnable {
 				}
 				score.setPoints(score.getPoints() + points);
 				System.out.println("points : " + points);
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						scorePane.setScoreText(points);
-					}
-				});
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	public void pause() {
+		paused = true;
+	}
+
+	public void resume() {
+		synchronized (pauseLock) {
+			paused = false;
+			pauseLock.notifyAll();
 		}
 	}
 

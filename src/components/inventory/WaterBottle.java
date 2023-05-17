@@ -17,10 +17,10 @@ public class WaterBottle extends HBox implements Item {
 		imageView.setPreserveRatio(true);
 
 		imageView.setRotate(-15);
-		imageView.setFitHeight(400);
+		imageView.setFitHeight(350);
 		imageView.setImage(image);
 		imageView.setTranslateX(-80);
-		imageView.setTranslateY(330);
+		imageView.setTranslateY(430);
 		this.getChildren().add(imageView);
 	}
 

@@ -3,13 +3,8 @@ package pane;
 import components.inventory.Inventory;
 import components.inventory.Item;
 import components.plate.Plate;
-import components.stats.HungerBar;
-import components.stats.ThirstBar;
-import components.timer.StartButton;
 import components.timer.Timer;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -20,16 +15,9 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 public class RootPane extends BorderPane {
 	private static RootPane rootPane = null;
-	private static Timer timer;
 	private static Inventory inventory;
 
 	private RootPane() {
@@ -37,15 +25,12 @@ public class RootPane extends BorderPane {
 				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bi));
-		VBox controlsBox = new VBox();
-		timer = Timer.getInstance();
-		StartButton startButton = new StartButton();
-		ScorePane scorePane = ScorePane.getInstance();
-		controlsBox.getChildren().addAll(scorePane, timer, startButton);
+		Timer.getInstance();
 		inventory = new Inventory();
 		Plate plate = Plate.getInstance();
+		TopPane topPane = new TopPane();
 		BottomPane bottomPane = new BottomPane(inventory);
-		this.setTop(controlsBox);
+		this.setTop(topPane);
 		this.setCenter(plate);
 		this.setBottom(bottomPane);
 

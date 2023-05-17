@@ -2,7 +2,6 @@ package components.inventory;
 
 import components.stats.HungerBar;
 import components.stats.StatsBar;
-import components.stats.ThirstBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;

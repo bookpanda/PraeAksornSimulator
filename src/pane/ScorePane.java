@@ -1,17 +1,18 @@
 package pane;
 
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import score.Score;
 
 public class ScorePane extends VBox {
 	private static ScorePane scorePane = null;
 	private Text scoreText;
 
 	private ScorePane() {
-		Score score = Score.getInstance();
 		Text text = new Text("Score");
-		scoreText = new Text(String.valueOf(score.getPoints()));
+		text.setFont(new Font(null, 20));
+		scoreText = new Text("0");
+		scoreText.setFont(new Font(null, 20));
 		this.getChildren().addAll(text, scoreText);
 	}
 
