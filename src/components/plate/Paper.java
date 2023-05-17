@@ -3,6 +3,7 @@ package components.plate;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import utils.AmbiencePlayer;
 
 public class Paper extends PaperAbove {
 	private int[] textWhite = { 2, 4, 6, 8, 9, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30 };
@@ -22,6 +23,8 @@ public class Paper extends PaperAbove {
 	}
 
 	public void flipToPage(int number) {
+		AmbiencePlayer.loadSound("flip");
+		AmbiencePlayer.playSound();
 		super.flipToPage(number);
 		text.setText(this.getText());
 		boolean flag = true;

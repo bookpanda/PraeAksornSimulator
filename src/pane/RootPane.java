@@ -19,6 +19,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class RootPane extends BorderPane {
@@ -39,13 +41,17 @@ public class RootPane extends BorderPane {
 		VBox statsBox = new VBox();
 		statsBox.setPrefWidth(200);
 		Text hungerText = new Text("Hunger");
+		hungerText.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
+		hungerText.setFill(Color.WHITE);
 		HungerBar hungerBar = HungerBar.getInstance();
 		Text thirstText = new Text("Thirst");
+		thirstText.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
+		thirstText.setFill(Color.WHITE);
 		ThirstBar thirstBar = ThirstBar.getInstance();
 		statsBox.getChildren().addAll(hungerText, hungerBar, thirstText, thirstBar);
 		StackPane bottom = new StackPane();
-		bottom.getChildren().addAll(statsBox,inventory);
-		bottom.setAlignment(inventory, Pos.CENTER);
+		bottom.getChildren().addAll(statsBox, inventory);
+		StackPane.setAlignment(inventory, Pos.CENTER);
 		this.setTop(controlsBox);
 		this.setCenter(plate);
 		this.setBottom(bottom);
