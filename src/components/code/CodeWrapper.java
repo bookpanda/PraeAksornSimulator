@@ -22,6 +22,9 @@ public class CodeWrapper {
 	}
 
 	public int getNewIndex() {
+		if((Integer) index != null) {
+			codes.remove(index);
+		}
 		int newIndex = (int) (Math.random() * c.getSize());
 		setIndex(newIndex);
 		return newIndex;

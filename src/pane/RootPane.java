@@ -43,23 +43,11 @@ public class RootPane extends BorderPane {
 		ScorePane scorePane = ScorePane.getInstance();
 		controlsBox.getChildren().addAll(scorePane, timer, startButton);
 		inventory = new Inventory();
-		BorderPane.setMargin(inventory, new Insets(8, 0, 8, 0));
 		Plate plate = Plate.getInstance();
-		VBox statsBox = new VBox();
-		statsBox.setPrefWidth(200);
-		Text hungerText = new Text("Hunger");
-		hungerText.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
-		HungerBar hungerBar = HungerBar.getInstance();
-		Text thirstText = new Text("Thirst");
-		thirstText.setFont(Font.font(null, FontWeight.SEMI_BOLD, 16));
-		ThirstBar thirstBar = ThirstBar.getInstance();
-		statsBox.getChildren().addAll(hungerText, hungerBar, thirstText, thirstBar);
-		StackPane bottom = new StackPane();
-		bottom.getChildren().addAll(statsBox, inventory);
-		StackPane.setAlignment(inventory, Pos.CENTER);
+		BottomPane bottomPane = new BottomPane(inventory);
 		this.setTop(controlsBox);
 		this.setCenter(plate);
-		this.setBottom(bottom);
+		this.setBottom(bottomPane);
 
 		this.setOnScroll(new EventHandler<ScrollEvent>() {
 			public void handle(ScrollEvent event) {
