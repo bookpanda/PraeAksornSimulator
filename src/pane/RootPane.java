@@ -25,7 +25,6 @@ public class RootPane extends BorderPane {
 				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bi));
-		Timer.getInstance();
 		inventory = new Inventory();
 		Plate plate = Plate.getInstance();
 		TopPane topPane = new TopPane();
@@ -37,18 +36,21 @@ public class RootPane extends BorderPane {
 		this.setOnScroll(new EventHandler<ScrollEvent>() {
 			public void handle(ScrollEvent event) {
 				double deltaY = event.getDeltaY();
-				if (deltaY > 0) {
-					int newIdx = inventory.getIndex() - 1;
-					if (newIdx < 0)
-						inventory.setIndex(inventory.getSize() - 1);
-					else
-						inventory.setIndex(newIdx);
-				} else if (deltaY < 0) {
-					int newIdx = inventory.getIndex() + 1;
-					if (newIdx >= inventory.getSize())
-						inventory.setIndex(0);
-					else
-						inventory.setIndex(newIdx);
+				Timer timer = Timer.getInstance();
+				if (timer.isActive()) {
+					if (deltaY > 0) {
+						int newIdx = inventory.getIndex() - 1;
+						if (newIdx < 0)
+							inventory.setIndex(inventory.getSize() - 1);
+						else
+							inventory.setIndex(newIdx);
+					} else if (deltaY < 0) {
+						int newIdx = inventory.getIndex() + 1;
+						if (newIdx >= inventory.getSize())
+							inventory.setIndex(0);
+						else
+							inventory.setIndex(newIdx);
+					}
 				}
 			}
 		});

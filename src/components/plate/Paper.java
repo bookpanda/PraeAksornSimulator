@@ -1,5 +1,6 @@
 package components.plate;
 
+import components.timer.Timer;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -19,28 +20,33 @@ public class Paper extends PaperAbove {
 		text.setStyle("-fx-font: 25 arial;");
 		this.getChildren().add(text);
 		this.setVisible(true);
-		
+
 	}
 
 	public void flipToPage(int number) {
-		AmbiencePlayer.loadSound("flip");
-		AmbiencePlayer.playSound();
-		super.flipToPage(number);
-		text.setText(this.getText());
-		boolean flag = true;
-		for (int idx : textWhite) {
-			if (idx == this.getPage()) {
-				text.setFill(Color.WHITE);
-				flag = false;
-				break;
+		Timer timer = Timer.getInstance();
+		if (timer.isActive()) {
+			if (0 <= number && number <= 31) {
+				AmbiencePlayer.loadSound("flip");
+				AmbiencePlayer.playSound();
 			}
-		}
-		if (flag)
-			text.setFill(Color.BLACK);
-		
-		this.setVisible(true);
-		if (this.getPage() >= 31) {
-			this.setVisible(false);
+			super.flipToPage(number);
+			text.setText(this.getText());
+			boolean flag = true;
+			for (int idx : textWhite) {
+				if (idx == this.getPage()) {
+					text.setFill(Color.WHITE);
+					flag = false;
+					break;
+				}
+			}
+			if (flag)
+				text.setFill(Color.BLACK);
+
+			this.setVisible(true);
+			if (this.getPage() >= 31) {
+				this.setVisible(false);
+			}
 		}
 	}
 }

@@ -2,6 +2,7 @@ package components.inventory;
 
 import components.stats.HungerBar;
 import components.stats.StatsBar;
+import components.timer.Timer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -25,10 +26,13 @@ public class Food extends HBox implements Item {
 	}
 
 	public void use() {
-		HungerBar hungerBar = HungerBar.getInstance();
-		UseRunnable ur = new UseRunnable((StatsBar) hungerBar);
-		thread = new Thread(ur);
-		thread.start();
+		Timer timer = Timer.getInstance();
+		if (timer.isActive()) {
+			HungerBar hungerBar = HungerBar.getInstance();
+			UseRunnable ur = new UseRunnable((StatsBar) hungerBar);
+			thread = new Thread(ur);
+			thread.start();
+		}
 	}
 
 	public void stop() {

@@ -2,6 +2,7 @@ package components.inventory;
 
 import components.stats.StatsBar;
 import components.stats.ThirstBar;
+import components.timer.Timer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -25,10 +26,13 @@ public class WaterBottle extends HBox implements Item {
 	}
 
 	public void use() {
-		ThirstBar thirstBar = ThirstBar.getInstance();
-		UseRunnable ur = new UseRunnable((StatsBar) thirstBar);
-		thread = new Thread(ur);
-		thread.start();
+		Timer timer = Timer.getInstance();
+		if (timer.isActive()) {
+			ThirstBar thirstBar = ThirstBar.getInstance();
+			UseRunnable ur = new UseRunnable((StatsBar) thirstBar);
+			thread = new Thread(ur);
+			thread.start();
+		}
 	}
 
 	public void stop() {
