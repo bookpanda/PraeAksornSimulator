@@ -14,6 +14,7 @@ import utils.MusicPlayer;
 public class Timer extends VBox {
 	private static Timer timer = null;
 	private int seconds;
+	private int round;
 	private Text timeText;
 	private boolean active;
 	private Plate plate;
@@ -27,7 +28,8 @@ public class Timer extends VBox {
 
 	private Timer() {
 		this.active = false;
-		setSeconds(60);
+		setSeconds(90);
+		setRound(0);
 		Text text = new Text("Time left");
 		text.setFont(new Font(null, 20));
 		timeText = new Text(String.valueOf(seconds));
@@ -54,7 +56,9 @@ public class Timer extends VBox {
 		codeWrapper.reset();
 		score = Score.getInstance();
 		score.setPoints(0);
-		TimeRunnable timer = new TimeRunnable(90, 5, false);
+		setSeconds(90);
+		setRound(0);
+		TimeRunnable timer = new TimeRunnable(this.getSeconds(), 5 - this.getRound(), false);
 		tb = ThirstBar.getInstance();
 		tb.setStats(200);
 		StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
@@ -89,7 +93,7 @@ public class Timer extends VBox {
 
 		} else {
 			pauseButton.setText("Pause");
-			TimeRunnable timer = new TimeRunnable(this.getSeconds(), 5, true);
+			TimeRunnable timer = new TimeRunnable(this.getSeconds(), 5 - this.getRound(), true);
 			tb = ThirstBar.getInstance();
 			StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
 			hb = HungerBar.getInstance();
@@ -130,6 +134,14 @@ public class Timer extends VBox {
 
 	public boolean isActive() {
 		return this.active;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
 	}
 
 }

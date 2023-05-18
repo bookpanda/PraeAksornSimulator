@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import javafx.util.Pair;
 
 public class Code {
-	private ArrayList<Pair<int[][], Pair<String, String>>> codes = new ArrayList<Pair<int[][], Pair<String, String>>>();
+	private ArrayList<Pair<int[][], Pair<String, String>>> codes;
 
 	public ArrayList<Pair<int[][], Pair<String, String>>> main() {
+		codes = new ArrayList<Pair<int[][], Pair<String, String>>>();
 //		kessoku
 		codes.add(new Pair<>(new int[][] { { 23, 23, 23, 22, 22 }, { 26, 23, 23, 22, 22 }, { 26, 23, 23, 22, 22 },
 				{ 23, 23, 23, 22, 22 } }, new Pair<>("kessoku", "Kessoku")));

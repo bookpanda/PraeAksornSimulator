@@ -12,15 +12,16 @@ public class CodeWrapper extends VBox {
 	private ArrayList<Pair<int[][], Pair<String, String>>> codes;
 	private Code c = new Code();
 	private Text codeText;
+	private Text couText;
 	private static CodeWrapper codeWrapper = null;
 
 	private CodeWrapper() {
 		setCodes(c.main());
-		Text text = new Text("Code: ");
-		text.setFont(new Font(null, 20));
+		couText = new Text("Code: ");
+		couText.setFont(new Font(null, 20));
 		codeText = new Text();
 		codeText.setFont(new Font(null, 20));
-		this.getChildren().addAll(text, codeText);
+		this.getChildren().addAll(couText, codeText);
 	}
 
 	public static synchronized CodeWrapper getInstance() {
@@ -61,6 +62,10 @@ public class CodeWrapper extends VBox {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public void setCou(int cou, int totalCou) {
+		couText.setText("Code: (" + cou + "/" + totalCou + ")");
 	}
 
 	public void setCodes(ArrayList<Pair<int[][], Pair<String, String>>> codes) {
