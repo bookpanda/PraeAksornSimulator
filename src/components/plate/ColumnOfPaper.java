@@ -88,10 +88,10 @@ public class ColumnOfPaper extends StackPane {
 		gc.strokeLine(X, Y, 38, 540);
 		gc.strokeLine(46, 13, X, Y);
 		gc.strokeLine(X, Y, 46, 540);
-		updateRow(X, Y);
+		updateColumn(X, Y);
 	}
 
-	public void updateRow(double X, double Y) {
+	public void updateColumn(double X, double Y) {
 		final ColumnOfPaper _self = this;
 		for (int i = 0; i < 4; i++) {
 			int yfromtop = 100 * i + 62;

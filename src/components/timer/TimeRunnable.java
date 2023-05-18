@@ -4,12 +4,8 @@ import components.code.CodeWrapper;
 import components.plate.Paper;
 import components.plate.PaperBox;
 import components.plate.Plate;
-<<<<<<< HEAD
 import components.plate.ColumnOfPaper;
-=======
-import components.plate.RowOfPaper;
 import components.stats.ThirstBar;
->>>>>>> 814afd292698550ec5d41da60cf8fe7fe8491094
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
