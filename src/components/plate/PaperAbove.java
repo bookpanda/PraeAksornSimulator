@@ -1,5 +1,6 @@
 package components.plate;
 
+import components.stats.HungerBar;
 import components.timer.Timer;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -10,6 +11,8 @@ public class PaperAbove extends HBox {
 			"#ffa74e", "#fff2cf", "#bb222d", "#d85978", "#692934", "#d578b1", "#cf9cbd", "#da4c0a", "#761f8a",
 			"#a76db7", "#9c0e0e", "#676f71", "#3b3c34", "#000000", "#B59B7C" };
 	private int page = 0;
+	private Timer timer = Timer.getInstance();
+	private HungerBar hungerBar = HungerBar.getInstance();
 
 	public PaperAbove() {
 		this.setPrefHeight(50);
@@ -21,8 +24,7 @@ public class PaperAbove extends HBox {
 	}
 
 	public void flipToPage(int number) {
-		Timer timer = Timer.getInstance();
-		if (timer.isActive()) {
+		if (timer.isActive() && hungerBar.getStats() >= 100) {
 			setPage(number);
 			this.setStyle("-fx-background-color: " + this.getColor() + ";");
 			if (number <= 0) {

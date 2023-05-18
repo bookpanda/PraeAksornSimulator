@@ -4,7 +4,12 @@ import components.code.CodeWrapper;
 import components.plate.Paper;
 import components.plate.PaperBox;
 import components.plate.Plate;
+<<<<<<< HEAD
 import components.plate.ColumnOfPaper;
+=======
+import components.plate.RowOfPaper;
+import components.stats.ThirstBar;
+>>>>>>> 814afd292698550ec5d41da60cf8fe7fe8491094
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -27,6 +32,7 @@ public class TimeRunnable implements Runnable {
 	private RootPane rootPane = RootPane.getInstance();
 	private Plate plate = Plate.getInstance();
 	private Score score = Score.getInstance();
+	private ThirstBar thirstBar = ThirstBar.getInstance();
 	private int points;
 	private int seconds;
 	private int rounds;
@@ -60,6 +66,9 @@ public class TimeRunnable implements Runnable {
 				rootPane.setBackground(new Background(bi));
 				int[][] currentCode = codeWrapper.getCurrentCode();
 				while (timer.getSeconds() > 0) {
+					if (thirstBar.getStats() == 0) {
+						score.setPoints(score.getPoints() - 100);
+					}
 					Pair<Boolean, Integer> result = calculateScore(currentCode);
 					boolean isPlateComplete = result.getKey();
 					points = result.getValue();
