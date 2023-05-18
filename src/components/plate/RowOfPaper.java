@@ -10,7 +10,7 @@ import javafx.scene.canvas.*;
 
 public class RowOfPaper extends StackPane {
 	private static VBox vbox;
-	private static double startDragY;
+//	private static double startDragY;
 	private static double startDragX;
 	private static double currentY;
 	private static double currentX;
@@ -37,6 +37,7 @@ public class RowOfPaper extends StackPane {
 		RowOfPaper.setMargin(rubber, new Insets(0, 16, 0, 0));
 		RowOfPaper.setAlignment(rubber, Pos.TOP_CENTER);
 
+		@SuppressWarnings("unused")
 		final RowOfPaper _self = this;
 		rubber.setOnMouseEntered(e -> {
 			setCursor(Cursor.HAND);
@@ -52,7 +53,7 @@ public class RowOfPaper extends StackPane {
 //		
 //		});
 		rubber.setOnMouseDragged(e -> {
-			System.out.println(e.getSceneY());
+//			System.out.println(e.getSceneY());
 			currentX = Math.max(Math.min(e.getSceneX(), startDragX + 55), startDragX - 41);
 			currentY = Math.max(Math.min(e.getSceneY()-88, 540), 0);
 
@@ -64,7 +65,7 @@ public class RowOfPaper extends StackPane {
 			gc.clearRect(0, 0, rubber.getWidth(), rubber.getHeight());
 			gc.strokeLine(38, 0, 38, 540);
 			gc.strokeLine(46, 0, 46, 540);
-			startDragY = e.getSceneY();
+//			startDragY = e.getSceneY();
 			startDragX = e.getSceneX();
 
 		});

@@ -13,16 +13,8 @@ public class Plate extends StackPane {
 	private Plate() {
 
 		Image plateFrame = new Image("\\images\\plate-frame.png");
-
 		ImageView frameview = new ImageView(plateFrame);
 		GridPane gp = new GridPane();
-//		for (int i = 0; i < 4; i++) {
-//			for (int j = 0; j < 5; j++) {
-//				PaperBox paperBox = new PaperBox();
-//				gp.add(paperBox, j, i, 1, 1);
-//			}
-//		}
-
 		for (int i = 0; i < 5; i++) {
 			RowOfPaper rowofPaper = new RowOfPaper();
 			gp.add(rowofPaper, i, 0);
@@ -40,7 +32,7 @@ public class Plate extends StackPane {
 		}
 		return plate;
 	}
-	
+
 	public void reset() {
 		GridPane gp = (GridPane) this.getChildren().get(1);
 		for (Node node : gp.getChildren()) {
