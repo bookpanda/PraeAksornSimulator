@@ -6,7 +6,7 @@ public class StatsRunnable implements Runnable {
 	private StatsBar statsBar;
 	private int stats;
 	private int rate;
-	
+
 	public StatsRunnable(StatsBar statsBar, int stats, int rate) {
 		this.statsBar = statsBar;
 		this.stats = stats;
@@ -16,10 +16,10 @@ public class StatsRunnable implements Runnable {
 	public void run() {
 		try {
 			stats = statsBar.getStats();
-			while (stats > 0) {
+			while (true) {
 				Thread.sleep(rate);
 				stats = statsBar.getStats();
-				statsBar.setStats(stats - 1);
+				statsBar.setStats(Math.max(0, stats - 1));
 				stats = statsBar.getStats();
 				Platform.runLater(new Runnable() {
 					@Override

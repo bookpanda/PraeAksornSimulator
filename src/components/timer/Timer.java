@@ -64,7 +64,7 @@ public class Timer extends VBox {
 		StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
 		hb = HungerBar.getInstance();
 		hb.setStats(200);
-		StatsRunnable hr = new StatsRunnable(hb, hb.getStats(), 500);
+		StatsRunnable hr = new StatsRunnable(hb, hb.getStats(), 400);
 		if (timeThread != null)
 			timeThread.interrupt();
 		timeThread = new Thread(timer);

@@ -1,5 +1,9 @@
 package components.plate;
 
+import java.util.Random;
+
+import components.stats.HungerBar;
+import components.stats.ThirstBar;
 import components.timer.Timer;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
@@ -8,7 +12,11 @@ import utils.AmbiencePlayer;
 
 public class Paper extends PaperAbove {
 	private int[] textWhite = { 2, 4, 6, 8, 9, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30 };
-	Text text = new Text();
+	private Text text = new Text();
+	private Timer timer = Timer.getInstance();
+	private HungerBar hungerBar = HungerBar.getInstance();
+	private ThirstBar thirstBar = ThirstBar.getInstance();
+	private Random random = new Random();
 
 	public Paper() {
 		this.setPrefHeight(50);
@@ -24,13 +32,17 @@ public class Paper extends PaperAbove {
 	}
 
 	public void flipToPage(int number) {
-		Timer timer = Timer.getInstance();
-		if (timer.isActive()) {
+		if (timer.isActive() && hungerBar.getStats() >= 100) {
 			if (0 <= number && number <= 31) {
 				AmbiencePlayer.loadSound("flip");
 				AmbiencePlayer.playSound();
 			}
-			super.flipToPage(number);
+			int variance = 0;
+			if (thirstBar.getStats() < 100) {
+				int range = Math.abs(thirstBar.getStats() - 100) / 10;
+				variance = random.nextInt(range + range) - range;
+			}
+			super.flipToPage(number + variance);
 			text.setText(this.getText());
 			boolean flag = true;
 			for (int idx : textWhite) {
