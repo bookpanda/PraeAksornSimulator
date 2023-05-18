@@ -10,7 +10,7 @@ import javafx.scene.canvas.*;
 
 public class RowOfPaper extends StackPane {
 	private static VBox vbox;
-	private static double startDragY;
+//	private static double startDragY;
 	private static double startDragX;
 	private static double currentY;
 	private static double currentX;
@@ -23,8 +23,8 @@ public class RowOfPaper extends StackPane {
 
 		gc.setStroke(Color.rgb(255, 196, 0));
 		gc.setLineWidth(2);
-		gc.strokeLine(2, 13, 2, 540);
-		gc.strokeLine(10, 13, 10, 540);
+		gc.strokeLine(2, 0, 2, 540);
+		gc.strokeLine(10, 0, 10, 540);
 		vbox = new VBox();
 		for (int i = 0; i < 4; i++) {
 			vbox.getChildren().add(new PaperBox());
@@ -37,6 +37,7 @@ public class RowOfPaper extends StackPane {
 		RowOfPaper.setMargin(rubber, new Insets(0, 16, 0, 0));
 		RowOfPaper.setAlignment(rubber, Pos.TOP_CENTER);
 
+		@SuppressWarnings("unused")
 		final RowOfPaper _self = this;
 		rubber.setOnMouseEntered(e -> {
 			setCursor(Cursor.HAND);
@@ -64,7 +65,10 @@ public class RowOfPaper extends StackPane {
 			gc.clearRect(0, 0, rubber.getWidth(), rubber.getHeight());
 			gc.strokeLine(38, 13, 38, 540);
 			gc.strokeLine(46, 13, 46, 540);
-			startDragY = e.getSceneY();
+//			startDragY = e.getSceneY();
+			gc.strokeLine(38, 0, 38, 540);
+			gc.strokeLine(46, 0, 46, 540);
+//			startDragY = e.getSceneY();
 			startDragX = e.getSceneX();
 
 		});
@@ -72,17 +76,17 @@ public class RowOfPaper extends StackPane {
 			gc.clearRect(0, 0, rubber.getWidth(), rubber.getHeight());
 			RowOfPaper.setMargin(rubber, new Insets(0, 16, 0, 0));
 			rubber.setWidth(12);
-			gc.strokeLine(2, 13, 2, 540);
-			gc.strokeLine(10, 13, 10, 540);
+			gc.strokeLine(2, 0, 2, 540);
+			gc.strokeLine(10, 0, 10, 540);
 		});
 	}
 
 	public void drawLine(double X, double Y) {
 		gc.clearRect(0, 0, rubber.getWidth(), rubber.getHeight());
 
-		gc.strokeLine(38, 13, X, Y);
+		gc.strokeLine(38, 0, X, Y);
 		gc.strokeLine(X, Y, 38, 540);
-		gc.strokeLine(46, 13, X, Y);
+		gc.strokeLine(46, 0, X, Y);
 		gc.strokeLine(X, Y, 46, 540);
 		updateRow(X, Y);
 	}

@@ -17,11 +17,11 @@ public class CodePaper extends GridPane {
 	private CodeWrapper codeWrapper = CodeWrapper.getInstance();
 
 	private CodePaper() {
-		ArrayList<Pair<int[][], String>> codes = codeWrapper.getCodes();
+		ArrayList<Pair<int[][], Pair<String, String>>> codes = codeWrapper.getCodes();
 		int cou = 0;
-		for (Pair<int[][], String> code : codes) {
+		for (Pair<int[][], Pair<String, String>> code : codes) {
 			VBox vb = new VBox();
-			Text text = new Text(code.getValue());
+			Text text = new Text(code.getValue().getValue());
 			vb.getChildren().addAll(text, new Table(code));
 			this.add(vb, cou / 3, cou % 3);
 			GridPane.setMargin(vb, new Insets(10, 10, 10, 10));

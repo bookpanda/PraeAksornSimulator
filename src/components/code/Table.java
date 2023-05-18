@@ -8,8 +8,8 @@ public class Table extends GridPane {
 	private String name;
 	private int[][] code;
 
-	public Table(Pair<int[][], String> code) {
-		setName(code.getValue());
+	public Table(Pair<int[][], Pair<String, String>> code) {
+		setName(code.getValue().getKey());
 		setCode(code.getKey());
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 5; j++) {

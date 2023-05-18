@@ -42,17 +42,18 @@ public class TimeRunnable implements Runnable {
 	public void run() {
 		try {
 			for (int i = 0; i < rounds; i++) {
-				if (!isFromPaused) {
-					System.out.println("code change " + isFromPaused);
+				if (isFromPaused) {
+					codeName = codeWrapper.getCurrentCodeName();
+					timer.setSeconds(seconds);
+					isFromPaused = false;
+				} else {
 					codeWrapper.getNewIndex();
 					codeName = codeWrapper.getCurrentCodeName();
 					MusicPlayer.loadMusic(codeName);
-					isFromPaused = false;
-				} else {
-					codeName = codeWrapper.getCurrentCodeName();
+					timer.setSeconds(90);
 				}
 				MusicPlayer.playMusic();
-				timer.setSeconds(seconds);
+				codeWrapper.setCou(timer.getRound() + 1, 5);
 				BackgroundImage bi = new BackgroundImage(
 						new Image("images/" + codeName + "_stand.png", 1000, 700, false, true), BackgroundRepeat.REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -60,7 +61,6 @@ public class TimeRunnable implements Runnable {
 				int[][] currentCode = codeWrapper.getCurrentCode();
 				while (timer.getSeconds() > 0) {
 					Pair<Boolean, Integer> result = calculateScore(currentCode);
-					System.out.println("checking score");
 					boolean isPlateComplete = result.getKey();
 					points = result.getValue();
 					if (isPlateComplete) {
@@ -78,7 +78,11 @@ public class TimeRunnable implements Runnable {
 				}
 				score.setPoints(score.getPoints() + points);
 				System.out.println("points : " + points);
+				timer.setRound(timer.getRound() + 1);
 			}
+			timer.pause();
+			PauseButton pauseButton = PauseButton.getInstance();
+			pauseButton.setDisable(true);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

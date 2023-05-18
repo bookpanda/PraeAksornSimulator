@@ -33,13 +33,13 @@ public class PaperBox extends VBox {
 //			flip paper up
 			if (Y - startDragY <= -30) {
 				int newPageNumber = p.getPage() + multiplier;
-				System.out.println("Current Page = " + newPageNumber);
+//				System.out.println("Current Page = " + newPageNumber);
 				p.flipToPage(newPageNumber);
 				pa.flipToPage(newPageNumber);
 //			flip paper down
 			} else if (Y - startDragY >= 30) {
 				int newPageNumber = p.getPage() - multiplier;
-				System.out.println("Current Page = " + newPageNumber);
+//				System.out.println("Current Page = " + newPageNumber);
 				p.flipToPage(newPageNumber);
 				pa.flipToPage(newPageNumber);
 			}
