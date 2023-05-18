@@ -42,15 +42,16 @@ public class Timer extends VBox {
 	public void start() {
 		PauseButton pauseButton = PauseButton.getInstance();
 		pauseButton.setDisable(false);
+		pauseButton.setText("Pause");
 		StartButton startButton = StartButton.getInstance();
 		startButton.setText("Restart");
 		codeWrapper = CodeWrapper.getInstance();
 		codeWrapper.reset();
-		codeWrapper.getNewIndex();
+//		codeWrapper.getNewIndex();
 		score = Score.getInstance();
 		score.setPoints(0);
 		this.active = true;
-		TimeRunnable timer = new TimeRunnable(60, false);
+		TimeRunnable timer = new TimeRunnable(90, 5, false);
 		tb = ThirstBar.getInstance();
 		tb.setStats(200);
 		StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
@@ -85,7 +86,7 @@ public class Timer extends VBox {
 
 		} else {
 			pauseButton.setText("Pause");
-			TimeRunnable timer = new TimeRunnable(this.getSeconds(), true);
+			TimeRunnable timer = new TimeRunnable(this.getSeconds(), 5, true);
 			tb = ThirstBar.getInstance();
 			StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
 			hb = HungerBar.getInstance();

@@ -22,40 +22,49 @@ import utils.MusicPlayer;
 
 public class TimeRunnable implements Runnable {
 	private CodeWrapper codeWrapper = CodeWrapper.getInstance();
+	private String codeName;
 	private Timer timer = Timer.getInstance();
 	private RootPane rootPane = RootPane.getInstance();
 	private Plate plate = Plate.getInstance();
 	private Score score = Score.getInstance();
 	private int points;
 	private int seconds;
+	private int rounds;
 	private boolean isFromPaused;
 
-	public TimeRunnable(int seconds, boolean isFromPaused) {
+	public TimeRunnable(int seconds, int rounds, boolean isFromPaused) {
 		this.seconds = seconds;
+		this.rounds = rounds;
 		this.isFromPaused = isFromPaused;
 	}
 
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < rounds; i++) {
+				if (!isFromPaused) {
+					System.out.println("code change " + isFromPaused);
+					codeWrapper.getNewIndex();
+					codeName = codeWrapper.getCurrentCodeName();
+					MusicPlayer.loadMusic(codeName);
+					isFromPaused = false;
+				} else {
+					codeName = codeWrapper.getCurrentCodeName();
+				}
+				MusicPlayer.playMusic();
 				timer.setSeconds(seconds);
-				String codeName = codeWrapper.getCurrentCodeName();
 				BackgroundImage bi = new BackgroundImage(
 						new Image("images/" + codeName + "_stand.png", 1000, 700, false, true), BackgroundRepeat.REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 				rootPane.setBackground(new Background(bi));
-				if (!isFromPaused) {
-					MusicPlayer.loadMusic(codeName);
-					isFromPaused = false;
-				}
-				MusicPlayer.playMusic();
 				int[][] currentCode = codeWrapper.getCurrentCode();
 				while (timer.getSeconds() > 0) {
 					Pair<Boolean, Integer> result = calculateScore(currentCode);
+					System.out.println("checking score");
 					boolean isPlateComplete = result.getKey();
 					points = result.getValue();
 					if (isPlateComplete) {
+						System.out.println("plate complete");
 						break;
 					}
 					Thread.sleep(1000);
@@ -99,7 +108,7 @@ public class TimeRunnable implements Runnable {
 			}
 			col += 1;
 		}
-		point += Math.floor(point * ((double) timer.getSeconds() / 60));
+		point += Math.floor(point * ((double) timer.getSeconds() / 90));
 		return new Pair<Boolean, Integer>(flag, point);
 	}
 }

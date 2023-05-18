@@ -7,13 +7,14 @@ import components.timer.Timer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import score.Score;
 
 public class TopPane extends HBox {
 	private static Timer timer;
-	private static ScorePane scorePane;
+	private static Score score;
 
 	public TopPane() {
-		scorePane = ScorePane.getInstance();
+		score = Score.getInstance();
 		timer = Timer.getInstance();
 
 		this.setMaxWidth(1000);
@@ -27,9 +28,9 @@ public class TopPane extends HBox {
 		HBox.setMargin(pauseButton, new Insets(10, 0, 0, 50));
 		HBox.setMargin(exitButton, new Insets(10, 0, 0, 50));
 		
-		this.getChildren().addAll(scorePane, timer, buttonsBox);
+		this.getChildren().addAll(score, timer, buttonsBox);
 		this.setAlignment(Pos.CENTER_LEFT);
-		HBox.setMargin(scorePane, new Insets(10, 20, 0, 50));
+		HBox.setMargin(score, new Insets(10, 20, 0, 50));
 		HBox.setMargin(timer, new Insets(10, 0, 0, 50));
 	}
 
