@@ -4,7 +4,7 @@ import components.code.CodeWrapper;
 import components.plate.Paper;
 import components.plate.PaperBox;
 import components.plate.Plate;
-import components.plate.RowOfPaper;
+import components.plate.ColumnOfPaper;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -96,7 +96,7 @@ public class TimeRunnable implements Runnable {
 		int col = 0;
 		for (Node node : gp.getChildren()) {
 			int row = 0;
-			RowOfPaper rop = (RowOfPaper) node; // 4 paper
+			ColumnOfPaper rop = (ColumnOfPaper) node; // 4 paper
 			VBox vbox = (VBox) rop.getChildren().get(0);
 			for (Node n : vbox.getChildren()) {
 				if (row > 3)

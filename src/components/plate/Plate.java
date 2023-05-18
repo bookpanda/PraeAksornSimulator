@@ -16,7 +16,7 @@ public class Plate extends StackPane {
 		ImageView frameview = new ImageView(plateFrame);
 		GridPane gp = new GridPane();
 		for (int i = 0; i < 5; i++) {
-			RowOfPaper rowofPaper = new RowOfPaper();
+			ColumnOfPaper rowofPaper = new ColumnOfPaper();
 			gp.add(rowofPaper, i, 0);
 		}
 		gp.setAlignment(Pos.CENTER);
@@ -37,7 +37,7 @@ public class Plate extends StackPane {
 		GridPane gp = (GridPane) this.getChildren().get(1);
 		for (Node node : gp.getChildren()) {
 			int row = 0;
-			RowOfPaper rop = (RowOfPaper) node; // 4 paper
+			ColumnOfPaper rop = (ColumnOfPaper) node; // 4 paper
 			VBox vbox = (VBox) rop.getChildren().get(0);
 			for (Node n : vbox.getChildren()) {
 				if (row > 3)

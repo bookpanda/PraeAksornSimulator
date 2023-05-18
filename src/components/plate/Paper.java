@@ -8,7 +8,7 @@ import utils.AmbiencePlayer;
 
 public class Paper extends PaperAbove {
 	private int[] textWhite = { 2, 4, 6, 8, 9, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30 };
-	Text text = new Text();
+	private Text text = new Text();
 
 	public Paper() {
 		this.setPrefHeight(50);
