@@ -41,8 +41,8 @@ public class Code {
 				new Pair<>(new int[][] { { 7, 8, 8, 3, 3 }, { 29, 28, 3, 2, 2 }, { 3, 3, 3, 2, 2 }, { 3, 3, 2, 2, 2 } },
 						new Pair<>("eighty_six", "Eighty Six")));
 //		test
-		codes.add(new Pair<>(new int[][] { { 0, 0, 0, 0, 0 }, { 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } },
-				new Pair<>("test", "Test")));
+//		codes.add(new Pair<>(new int[][] { { 0, 0, 0, 0, 0 }, { 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } },
+//				new Pair<>("test", "Test")));
 		return codes;
 	}
 

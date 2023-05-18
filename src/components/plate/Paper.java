@@ -17,10 +17,6 @@ public class Paper extends PaperAbove {
 	private HungerBar hungerBar = HungerBar.getInstance();
 	private ThirstBar thirstBar = ThirstBar.getInstance();
 	private Random random = new Random();
-<<<<<<< HEAD
-
-=======
->>>>>>> 4b2bf5856c20508cc04cb1c09eb41bbb97b53014
 
 	public Paper() {
 		this.setPrefHeight(50);

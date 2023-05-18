@@ -108,13 +108,17 @@ public class Timer extends VBox {
 		this.active = !this.active;
 	}
 
-	public void exit() {
+	public void killThreads() {
 		if (timeThread != null)
 			timeThread.interrupt();
 		if (thirstThread != null)
 			thirstThread.interrupt();
 		if (hungerThread != null)
 			hungerThread.interrupt();
+	}
+
+	public void exit() {
+		killThreads();
 		System.exit(1);
 	}
 
