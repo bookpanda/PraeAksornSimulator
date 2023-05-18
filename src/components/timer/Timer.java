@@ -1,6 +1,7 @@
 package components.timer;
 
 import components.code.CodeWrapper;
+import components.plate.Plate;
 import components.stats.HungerBar;
 import components.stats.StatsRunnable;
 import components.stats.ThirstBar;
@@ -15,6 +16,7 @@ public class Timer extends VBox {
 	private int seconds;
 	private Text timeText;
 	private boolean active;
+	private Plate plate;
 	private ThirstBar tb;
 	private HungerBar hb;
 	private Thread timeThread;
@@ -40,6 +42,9 @@ public class Timer extends VBox {
 	}
 
 	public void start() {
+		this.active = true;
+		plate = Plate.getInstance();
+		plate.reset();
 		PauseButton pauseButton = PauseButton.getInstance();
 		pauseButton.setDisable(false);
 		pauseButton.setText("Pause");
@@ -47,10 +52,8 @@ public class Timer extends VBox {
 		startButton.setText("Restart");
 		codeWrapper = CodeWrapper.getInstance();
 		codeWrapper.reset();
-//		codeWrapper.getNewIndex();
 		score = Score.getInstance();
 		score.setPoints(0);
-		this.active = true;
 		TimeRunnable timer = new TimeRunnable(90, 5, false);
 		tb = ThirstBar.getInstance();
 		tb.setStats(200);
