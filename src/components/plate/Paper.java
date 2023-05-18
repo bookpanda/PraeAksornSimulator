@@ -13,13 +13,10 @@ import utils.AmbiencePlayer;
 public class Paper extends PaperAbove {
 	private int[] textWhite = { 2, 4, 6, 8, 9, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30 };
 	private Text text = new Text();
-<<<<<<< HEAD
-=======
 	private Timer timer = Timer.getInstance();
 	private HungerBar hungerBar = HungerBar.getInstance();
 	private ThirstBar thirstBar = ThirstBar.getInstance();
 	private Random random = new Random();
->>>>>>> 814afd292698550ec5d41da60cf8fe7fe8491094
 
 	public Paper() {
 		this.setPrefHeight(50);
