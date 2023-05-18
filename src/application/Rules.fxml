@@ -68,6 +68,11 @@
                   <Font size="22.0" />
                </font>
             </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tips: shift-click = 3-5 pages, ctrl-click = 7-10 pages">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
          </children>
          <BorderPane.margin>
             <Insets top="30.0" />
