@@ -1,3 +1,6 @@
+/**
+ * HungerBar and ThirstBar extends from StatsBar
+ */
 package components.stats;
 
 import javafx.scene.layout.HBox;

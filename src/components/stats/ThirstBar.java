@@ -1,3 +1,6 @@
+/**
+ * Displays thirst bar and controls thirst level
+ */
 package components.stats;
 
 import javafx.scene.layout.Background;
@@ -22,6 +25,9 @@ public class ThirstBar extends StatsBar {
 		return thirstBar;
 	}
 
+	/**
+	 * Updates both the display and actual value
+	 */
 	public void replenish() {
 		this.setStats(Math.max(0, Math.min(200, thirst + 10)));
 		this.setWidth(Math.max(0, Math.min(200, thirst + 10)));

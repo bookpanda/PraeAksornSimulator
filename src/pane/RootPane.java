@@ -1,3 +1,6 @@
+/**
+ * Main pane for game play
+ */
 package pane;
 
 import components.inventory.Inventory;
@@ -32,7 +35,14 @@ public class RootPane extends BorderPane {
 		this.setTop(topPane);
 		this.setCenter(plate);
 		this.setBottom(bottomPane);
+		setOnScroll();
+		addEventFilter();
+	}
 
+	/**
+	 * Scroll event for changing Slots in Inventory
+	 */
+	private void setOnScroll() {
 		this.setOnScroll(new EventHandler<ScrollEvent>() {
 			public void handle(ScrollEvent event) {
 				double deltaY = event.getDeltaY();
@@ -54,7 +64,12 @@ public class RootPane extends BorderPane {
 				}
 			}
 		});
-
+	}
+	
+	/**
+	 * Click event for using Items
+	 */
+	private void addEventFilter() {
 		this.addEventFilter(MouseEvent.ANY, new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				Node currentItem = inventory.getCurrentSlot().getItem();

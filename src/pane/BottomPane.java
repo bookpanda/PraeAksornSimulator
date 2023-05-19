@@ -1,3 +1,6 @@
+/**
+ * Bottom part of RootPane (Inventory, HungerBar, ThirstBar)
+ */
 package pane;
 
 import components.inventory.Inventory;

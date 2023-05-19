@@ -1,3 +1,6 @@
+/**
+ * Runnable for running HungerBar and ThirstBar during the game
+ */
 package components.stats;
 
 import javafx.application.Platform;
@@ -13,6 +16,9 @@ public class StatsRunnable implements Runnable {
 		this.rate = rate;
 	}
 
+	/**
+	 * Decreases hunger/thirst by 1 every specified time interval
+	 */
 	public void run() {
 		try {
 			stats = statsBar.getStats();

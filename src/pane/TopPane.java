@@ -1,3 +1,6 @@
+/**
+ * Top part of RootPane (Timer, Score, CodeWrapper ,program routes)
+ */
 package pane;
 
 import components.code.CodeWrapper;
@@ -19,6 +22,13 @@ public class TopPane extends HBox {
 	private static CodeWrapper codeWrapper;
 
 	public TopPane() {
+		this.setMaxWidth(1000);
+		this.getChildren().addAll(getInfoBox(), getButtonsBox());
+		this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, getInsets())));
+		this.setAlignment(Pos.CENTER_LEFT);
+	}
+
+	private HBox getInfoBox() {
 		score = Score.getInstance();
 		timer = Timer.getInstance();
 		codeWrapper = CodeWrapper.getInstance();
@@ -28,7 +38,10 @@ public class TopPane extends HBox {
 		HBox.setMargin(score, new Insets(10, 0, 10, 50));
 		HBox.setMargin(timer, new Insets(10, 0, 10, 50));
 		HBox.setMargin(codeWrapper, new Insets(10, 0, 10, 50));
+		return infoBox;
+	}
 
+	private HBox getButtonsBox() {
 		StartButton startButton = StartButton.getInstance();
 		PauseButton pauseButton = PauseButton.getInstance();
 		ExitButton exitButton = new ExitButton();
@@ -38,11 +51,7 @@ public class TopPane extends HBox {
 		HBox.setMargin(startButton, new Insets(10, 0, 10, 50));
 		HBox.setMargin(pauseButton, new Insets(10, 0, 10, 50));
 		HBox.setMargin(exitButton, new Insets(10, 0, 10, 50));
-
-		this.setMaxWidth(1000);
-		this.getChildren().addAll(infoBox, buttonsBox);
-		this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, getInsets())));
-		this.setAlignment(Pos.CENTER_LEFT);
+		return buttonsBox;
 	}
 
 }

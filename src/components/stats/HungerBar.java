@@ -1,3 +1,6 @@
+/**
+ * Displays hunger bar and controls hunger level
+ */
 package components.stats;
 
 import javafx.scene.layout.Background;
@@ -22,6 +25,9 @@ public class HungerBar extends StatsBar {
 		return hungerBar;
 	}
 
+	/**
+	 * Updates both the display and actual value
+	 */
 	public void replenish() {
 		this.setStats(Math.max(0, Math.min(200, hunger + 40)));
 		this.setWidth(Math.max(0, Math.min(200, hunger + 40)));
