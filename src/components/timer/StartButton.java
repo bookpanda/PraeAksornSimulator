@@ -1,3 +1,6 @@
+/**
+ * Button for starting/restarting the game
+ */
 package components.timer;
 
 import javafx.event.ActionEvent;

@@ -1,3 +1,6 @@
+/**
+ * Timer is responsible for starting, pausing and exiting the game
+ */
 package components.timer;
 
 import components.code.CodeWrapper;
@@ -16,10 +19,10 @@ public class Timer extends VBox {
 	private int seconds;
 	private int round;
 	private Text timeText;
-	private boolean active;
+	private boolean isActive;
 	private Plate plate;
-	private ThirstBar tb;
-	private HungerBar hb;
+	private ThirstBar thirstBar;
+	private HungerBar hungerBar;
 	private Thread timeThread;
 	private Thread thirstThread;
 	private Thread hungerThread;
@@ -27,7 +30,11 @@ public class Timer extends VBox {
 	private Score score;
 
 	private Timer() {
-		this.active = false;
+		thirstBar = ThirstBar.getInstance();
+		hungerBar = HungerBar.getInstance();
+		codeWrapper = CodeWrapper.getInstance();
+		score = Score.getInstance();
+		setIsActive(false);
 		setSeconds(90);
 		setRound(0);
 		Text text = new Text("Time left");
@@ -43,8 +50,12 @@ public class Timer extends VBox {
 		return timer;
 	}
 
+	/**
+	 * Starts/Restarts game with 90 seconds per round, thirst and hunger set to 200,
+	 * score set to 0 and threads are initialized
+	 */
 	public void start() {
-		this.active = true;
+		setIsActive(true);
 		plate = Plate.getInstance();
 		plate.reset();
 		PauseButton pauseButton = PauseButton.getInstance();
@@ -52,63 +63,51 @@ public class Timer extends VBox {
 		pauseButton.setText("Pause");
 		StartButton startButton = StartButton.getInstance();
 		startButton.setText("Restart");
-		codeWrapper = CodeWrapper.getInstance();
 		codeWrapper.reset();
-		score = Score.getInstance();
 		score.setPoints(0);
 		setSeconds(90);
 		setRound(0);
-		TimeRunnable timer = new TimeRunnable(this.getSeconds(), 5 - this.getRound(), false);
-		tb = ThirstBar.getInstance();
-		tb.setStats(200);
-		StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
-		hb = HungerBar.getInstance();
-		hb.setStats(200);
-		StatsRunnable hr = new StatsRunnable(hb, hb.getStats(), 400);
-		if (timeThread != null)
-			timeThread.interrupt();
-		timeThread = new Thread(timer);
+		thirstBar.setStats(200);
+		hungerBar.setStats(200);
+		killThreads();
+		startThreads(false);
+	}
+
+	/**
+	 * Pause and resume
+	 */
+	public void pause() {
+		PauseButton pauseButton = PauseButton.getInstance();
+		if (isActive()) {
+			pauseButton.setText("Resume");
+			MusicPlayer.pauseMusic();
+			killThreads();
+		} else {
+			pauseButton.setText("Pause");
+			startThreads(true);
+		}
+		setIsActive(!this.isActive);
+	}
+
+	/**
+	 * Starts threads for timer, hunger and thirst
+	 */
+	private void startThreads(boolean isPause) {
+		TimeRunnable timeRunnable = new TimeRunnable(this.getSeconds(), 5 - this.getRound(), isPause);
+		timeThread = new Thread(timeRunnable);
 		timeThread.start();
-		if (thirstThread != null)
-			thirstThread.interrupt();
-		thirstThread = new Thread(tr);
+		StatsRunnable thirstRunnable = new StatsRunnable(thirstBar, thirstBar.getStats(), 300);
+		thirstThread = new Thread(thirstRunnable);
 		thirstThread.start();
-		if (hungerThread != null)
-			hungerThread.interrupt();
-		hungerThread = new Thread(hr);
+		StatsRunnable hungerRunnable = new StatsRunnable(hungerBar, hungerBar.getStats(), 500);
+		hungerThread = new Thread(hungerRunnable);
 		hungerThread.start();
 	}
 
-	public void pause() {
-		PauseButton pauseButton = PauseButton.getInstance();
-		if (this.active) {
-			pauseButton.setText("Resume");
-			MusicPlayer.pauseMusic();
-			if (timeThread != null)
-				timeThread.interrupt();
-			if (thirstThread != null)
-				thirstThread.interrupt();
-			if (hungerThread != null)
-				hungerThread.interrupt();
-
-		} else {
-			pauseButton.setText("Pause");
-			TimeRunnable timer = new TimeRunnable(this.getSeconds(), 5 - this.getRound(), true);
-			tb = ThirstBar.getInstance();
-			StatsRunnable tr = new StatsRunnable(tb, tb.getStats(), 300);
-			hb = HungerBar.getInstance();
-			StatsRunnable hr = new StatsRunnable(hb, hb.getStats(), 500);
-			timeThread = new Thread(timer);
-			timeThread.start();
-			thirstThread = new Thread(tr);
-			thirstThread.start();
-			hungerThread = new Thread(hr);
-			hungerThread.start();
-		}
-		this.active = !this.active;
-	}
-
-	public void killThreads() {
+	/**
+	 * Kills threads for timer, hunger and thirst
+	 */
+	private void killThreads() {
 		if (timeThread != null)
 			timeThread.interrupt();
 		if (thirstThread != null)
@@ -136,8 +135,12 @@ public class Timer extends VBox {
 			timeText.setText(String.valueOf(seconds));
 	}
 
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 	public boolean isActive() {
-		return this.active;
+		return this.isActive;
 	}
 
 	public int getRound() {

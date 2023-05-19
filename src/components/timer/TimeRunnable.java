@@ -1,3 +1,6 @@
+/**
+ * Thread for running the game time and checking current code's correctness and scores
+ */
 package components.timer;
 
 import components.code.CodeWrapper;
@@ -40,6 +43,11 @@ public class TimeRunnable implements Runnable {
 		this.isFromPaused = isFromPaused;
 	}
 
+	/**
+	 * Loops for specified number of rounds, each round lasts for 90 seconds (or is
+	 * resumed after pause). Every second, the code is checked whether it is 100%
+	 * correct. If yes, move to new code.
+	 */
 	@Override
 	public void run() {
 		try {
@@ -69,7 +77,6 @@ public class TimeRunnable implements Runnable {
 					boolean isPlateComplete = result.getKey();
 					points = result.getValue();
 					if (isPlateComplete) {
-						System.out.println("plate complete");
 						break;
 					}
 					Thread.sleep(1000);

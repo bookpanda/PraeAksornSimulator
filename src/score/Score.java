@@ -1,3 +1,6 @@
+/**
+ * Keeps track of score in game
+ */
 package score;
 
 import javafx.scene.layout.VBox;
@@ -9,6 +12,9 @@ public class Score extends VBox {
 	private Text scoreText;
 	private int points;
 
+	/**
+	 * Initializes display and actual value
+	 */
 	private Score() {
 		Text text = new Text("Score");
 		text.setFont(new Font(null, 20));

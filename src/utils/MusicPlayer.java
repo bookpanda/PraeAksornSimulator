@@ -1,3 +1,6 @@
+/**
+ * Plays music of current code
+ */
 package utils;
 
 import java.io.File;

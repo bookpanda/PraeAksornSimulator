@@ -1,3 +1,6 @@
+/**
+ * Button for exiting program
+ */
 package components.timer;
 
 import javafx.event.ActionEvent;

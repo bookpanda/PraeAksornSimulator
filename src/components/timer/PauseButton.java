@@ -1,3 +1,6 @@
+/**
+ * Button for pausing the game
+ */
 package components.timer;
 
 import javafx.event.ActionEvent;

@@ -1,3 +1,6 @@
+/**
+ * Provides designs for StartButton, PauseButton and ExitButton
+ */
 package components.timer;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;

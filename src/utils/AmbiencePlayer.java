@@ -1,3 +1,6 @@
+/**
+ * Plays sounds for paper flips, eating and drinking
+ */
 package utils;
 
 import java.io.File;
