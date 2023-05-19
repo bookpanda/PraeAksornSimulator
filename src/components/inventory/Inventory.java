@@ -7,6 +7,7 @@ import components.code.CodePaper;
 import components.plate.Plate;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import pane.CenterPane;
 import pane.RootPane;
 
 public class Inventory extends HBox {
@@ -46,10 +47,11 @@ public class Inventory extends HBox {
 	 */
 	public void setIndex(int index) {
 		RootPane rootPane = RootPane.getInstance();
+		CenterPane centerPane = rootPane.getCenterPane();
 		Slot prevSlot = ((Slot) this.getChildren().get(this.index));
 		prevSlot.setActive(false);
 		if (prevSlot.getPos() == "center") {
-			rootPane.setCenter(null);
+			centerPane.getChildren().remove(0);
 		} else if (prevSlot.getPos() == "right") {
 			rootPane.setRight(null);
 		}
@@ -57,7 +59,7 @@ public class Inventory extends HBox {
 		Slot newSlot = ((Slot) this.getChildren().get(this.index));
 		newSlot.setActive(true);
 		if (newSlot.getPos() == "center") {
-			rootPane.setCenter(newSlot.getItem());
+			centerPane.getChildren().add(newSlot.getItem());
 		} else if (newSlot.getPos() == "right") {
 			rootPane.setRight(newSlot.getItem());
 		}
