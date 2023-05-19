@@ -1,3 +1,6 @@
+/**
+ * also known as "Kradak Tak" in real life, displays the instructions for each code
+ */
 package components.code;
 
 import java.util.ArrayList;
@@ -16,6 +19,10 @@ public class CodePaper extends GridPane {
 	private static CodePaper codePaper = null;
 	private CodeWrapper codeWrapper = CodeWrapper.getInstance();
 
+	/**
+	 * CodePaper is made of VBoxes, each VBox is code's name followed by
+	 * instructions (as an instance of Table class)
+	 */
 	private CodePaper() {
 		ArrayList<Pair<int[][], Pair<String, String>>> codes = codeWrapper.getCodes();
 		int cou = 0;

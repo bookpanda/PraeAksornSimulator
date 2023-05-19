@@ -1,3 +1,6 @@
+/**
+ * Storage for all PraeAksorn codes
+ */
 package components.code;
 
 import java.util.ArrayList;

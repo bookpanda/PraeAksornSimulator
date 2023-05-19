@@ -1,3 +1,6 @@
+/**
+ * Stores instructions for each code in a 4x5 table, each cell representing what number of paper book to flip to
+ */
 package components.code;
 
 import javafx.scene.layout.GridPane;

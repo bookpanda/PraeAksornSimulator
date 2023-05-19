@@ -1,3 +1,6 @@
+/**
+ * Controls the routing of pages in the program
+ */
 package application;
 
 import java.io.IOException;
@@ -16,9 +19,12 @@ public class SceneController {
 	private Scene scene;
 	private Parent root;
 
+	/**
+	 * Main game play is built without SceneBuilder
+	 */
 	public void switchToGameplay(ActionEvent event) throws IOException {
-		RootPane rp = RootPane.getInstance();
-		scene = new Scene(rp, 1000, 750);
+		RootPane rootPane = RootPane.getInstance();
+		scene = new Scene(rootPane, 1000, 750);
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("PraeAksornSimulator");
 		stage.setResizable(false);
@@ -33,7 +39,7 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public void switchToRules(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("Rules.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -41,7 +47,7 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public void exitProgram() {
 		Timer timer = Timer.getInstance();
 		timer.exit();

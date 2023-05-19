@@ -1,3 +1,6 @@
+/**
+ * Entry point of program
+ */
 package application;
 
 import javafx.application.Application;
@@ -8,6 +11,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	/**
+	 * loads Home page
+	 */
 	@Override
 	public void start(Stage stage) {
 		try {
