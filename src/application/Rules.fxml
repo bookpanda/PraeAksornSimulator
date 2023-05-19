@@ -24,7 +24,7 @@
             </TextFlow>
             <TextFlow prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2. There are 5 rounds, each has 90 seconds to complete. Finishing earlier gives bonus points while failing gets penalties.">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2. There are 5 rounds, each having 90 seconds to complete. Finishing earlier gives bonus points.">
                      <font>
                         <Font size="22.0" />
                      </font>
