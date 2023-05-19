@@ -1,4 +1,5 @@
 # PraeAksornSimulator
+<img src="images/gameplay_2.png" alt= "gameplay_2" width="50%">
 
 ## Introduction
 PraeAksorn Simulator is inspired by real-life card stunt, which involves assembling a large number of colored papers together to form an image. The objective of this game is to allow you to experience card stunts and form an image within a time limit.
