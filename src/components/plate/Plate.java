@@ -1,3 +1,6 @@
+/**
+ * Plate is 5 ColumnOfPapers (Each ColumnOfPaper is made of 4 PaperBoxes)
+ */
 package components.plate;
 
 import javafx.geometry.Pos;
@@ -11,7 +14,6 @@ public class Plate extends StackPane {
 	private static Plate plate = null;
 
 	private Plate() {
-
 		Image plateFrame = new Image("\\images\\plate-frame.png");
 		ImageView frameview = new ImageView(plateFrame);
 		GridPane gp = new GridPane();
@@ -33,6 +35,9 @@ public class Plate extends StackPane {
 		return plate;
 	}
 
+	/**
+	 * Resets every Paper and PaperAbove in each PaperBox to 0
+	 */
 	public void reset() {
 		GridPane gp = (GridPane) this.getChildren().get(1);
 		for (Node node : gp.getChildren()) {

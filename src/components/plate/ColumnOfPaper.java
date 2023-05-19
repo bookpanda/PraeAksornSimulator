@@ -1,3 +1,6 @@
+/**
+ * Made of 4 vertically aligned PaperBoxes
+ */
 package components.plate;
 
 import javafx.scene.layout.StackPane;
@@ -10,7 +13,6 @@ import javafx.scene.canvas.*;
 
 public class ColumnOfPaper extends StackPane {
 	private static VBox vbox;
-//	private static double startDragY;
 	private static double startDragX;
 	private static double currentY;
 	private static double currentX;
@@ -39,23 +41,24 @@ public class ColumnOfPaper extends StackPane {
 
 		@SuppressWarnings("unused")
 		final ColumnOfPaper _self = this;
+		setUpRubber();
+	}
+
+	/**
+	 * Event listeners for rubber bands on the each ColumnOfPaper. Drag-clicking
+	 * rubber can reset the Paper and PaperAbove in each PaperBox
+	 */
+	public void setUpRubber() {
 		rubber.setOnMouseEntered(e -> {
 			setCursor(Cursor.HAND);
 		});
 		rubber.setOnMouseExited(e -> {
 			setCursor(Cursor.DEFAULT);
 		});
-//		rubber.setOnMouseClicked(e -> {
-//			for (int i=0;i<4;i++) {
-//				((Paper) ((PaperBox) (((VBox) _self.getChildren().get(0)).getChildren().get(i))).getChildren().get(1)).flipToPage(0);
-//				((PaperAbove) ((PaperBox) (((VBox) _self.getChildren().get(0)).getChildren().get(i))).getChildren().get(0)).flipToPage(0);
-//			}
-//		
-//		});
+
 		rubber.setOnMouseDragged(e -> {
-			System.out.println(e.getSceneY());
 			currentX = Math.max(Math.min(e.getSceneX(), startDragX + 55), startDragX - 41);
-			currentY = Math.max(Math.min(e.getSceneY()-88, 540), 0);
+			currentY = Math.max(Math.min(e.getSceneY() - 88, 540), 0);
 
 			drawLine(currentX - startDragX + 51 - 8, currentY);
 		});
@@ -65,10 +68,8 @@ public class ColumnOfPaper extends StackPane {
 			gc.clearRect(0, 0, rubber.getWidth(), rubber.getHeight());
 			gc.strokeLine(38, 13, 38, 540);
 			gc.strokeLine(46, 13, 46, 540);
-//			startDragY = e.getSceneY();
 			gc.strokeLine(38, 13, 38, 540);
 			gc.strokeLine(46, 13, 46, 540);
-//			startDragY = e.getSceneY();
 			startDragX = e.getSceneX();
 
 		});
@@ -91,6 +92,10 @@ public class ColumnOfPaper extends StackPane {
 		updateColumn(X, Y);
 	}
 
+	/**
+	 * When rubber band is dragged far enough, Paper and PaperAbove in PaperBox will
+	 * be reset
+	 */
 	public void updateColumn(double X, double Y) {
 		final ColumnOfPaper _self = this;
 		for (int i = 0; i < 4; i++) {

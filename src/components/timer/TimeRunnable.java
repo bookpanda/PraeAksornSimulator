@@ -64,13 +64,13 @@ public class TimeRunnable implements Runnable {
 				}
 				MusicPlayer.playMusic();
 				codeWrapper.setCou(timer.getRound() + 1, 5);
-				BackgroundImage bi = new BackgroundImage(
+				BackgroundImage backgroundImage = new BackgroundImage(
 						new Image("images/" + codeName + "_stand.png", 1000, 700, false, true), BackgroundRepeat.REPEAT,
 						BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-				rootPane.setBackground(new Background(bi));
+				rootPane.setBackground(new Background(backgroundImage));
 				int[][] currentCode = codeWrapper.getCurrentCode();
 				while (timer.getSeconds() > 0) {
-					if (thirstBar.getStats() == 0) {
+					if (thirstBar.getStats() < 100) {
 						score.setPoints(score.getPoints() - 100);
 					}
 					Pair<Boolean, Integer> result = calculateScore(currentCode);

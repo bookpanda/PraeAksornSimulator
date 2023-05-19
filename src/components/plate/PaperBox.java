@@ -1,3 +1,6 @@
+/**
+ * Comprises of PaperAbove and Paper, acts as individual paper flip books
+ */
 package components.plate;
 
 import javafx.geometry.Insets;
@@ -8,6 +11,10 @@ public class PaperBox extends VBox {
 	private static Paper paper;
 	private static PaperAbove paperAbove;
 
+	/**
+	 * Paper is flipped by drag clicking vertically, shifts = 3-5 pages and ctrls =
+	 * 7-10 pages
+	 */
 	public PaperBox() {
 		this.setSpacing(1);
 		this.setPadding(new Insets(1, 1, 1, 1));
@@ -33,17 +40,15 @@ public class PaperBox extends VBox {
 //			flip paper up
 			if (Y - startDragY <= -30) {
 				int newPageNumber = p.getPage() + multiplier;
-//				System.out.println("Current Page = " + newPageNumber);
 				p.flipToPage(newPageNumber);
 				pa.flipToPage(newPageNumber);
 //			flip paper down
 			} else if (Y - startDragY >= 30) {
 				int newPageNumber = p.getPage() - multiplier;
-//				System.out.println("Current Page = " + newPageNumber);
 				p.flipToPage(newPageNumber);
 				pa.flipToPage(newPageNumber);
 			}
 		});
 	}
-	
+
 }

@@ -1,6 +1,7 @@
+/**
+ * The lower part of paper in PaperBox
+ */
 package components.plate;
-
-import java.util.Random;
 
 import components.stats.HungerBar;
 import components.stats.ThirstBar;
@@ -16,7 +17,6 @@ public class Paper extends PaperAbove {
 	private Timer timer = Timer.getInstance();
 	private HungerBar hungerBar = HungerBar.getInstance();
 	private ThirstBar thirstBar = ThirstBar.getInstance();
-	private Random random = new Random();
 
 	public Paper() {
 		this.setPrefHeight(50);
@@ -31,18 +31,16 @@ public class Paper extends PaperAbove {
 
 	}
 
+	/**
+	 * Can only be flipped when game in running, hunger >= 100 and thirst >= 100
+	 */
 	public void flipToPage(int number) {
-		if (timer.isActive() && hungerBar.getStats() >= 100) {
+		if (timer.isActive() && hungerBar.getStats() >= 100 && thirstBar.getStats() >= 100) {
 			if (0 <= number && number <= 31) {
 				AmbiencePlayer.loadSound("flip");
 				AmbiencePlayer.playSound();
 			}
-			int variance = 0;
-			if (thirstBar.getStats() < 100) {
-				int range = Math.abs(thirstBar.getStats() - 100) / 10;
-				variance = random.nextInt(range + range) - range;
-			}
-			super.flipToPage(number + variance);
+			super.flipToPage(number);
 			text.setText(this.getText());
 			boolean flag = true;
 			for (int idx : textWhite) {

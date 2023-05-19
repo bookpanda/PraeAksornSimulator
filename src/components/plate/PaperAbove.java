@@ -1,6 +1,10 @@
+/**
+ * The upper part of paper in PaperBox
+ */
 package components.plate;
 
 import components.stats.HungerBar;
+import components.stats.ThirstBar;
 import components.timer.Timer;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -13,6 +17,7 @@ public class PaperAbove extends HBox {
 	private int page = 0;
 	private Timer timer = Timer.getInstance();
 	private HungerBar hungerBar = HungerBar.getInstance();
+	private ThirstBar thirstBar = ThirstBar.getInstance();
 
 	public PaperAbove() {
 		this.setPrefHeight(50);
@@ -23,8 +28,11 @@ public class PaperAbove extends HBox {
 		this.setVisible(false);
 	}
 
+	/**
+	 * Can only be flipped when game in running, hunger >= 100 and thirst >= 100
+	 */
 	public void flipToPage(int number) {
-		if (timer.isActive() && hungerBar.getStats() >= 100) {
+		if (timer.isActive() && hungerBar.getStats() >= 100 && thirstBar.getStats() >= 100) {
 			setPage(number);
 			this.setStyle("-fx-background-color: " + this.getColor() + ";");
 			if (number <= 0) {
