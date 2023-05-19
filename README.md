@@ -25,6 +25,7 @@ If the hunger or thirst level is below 100, you cannot flip any pages. Moreover,
 
 
 ## Codes
+These images are created using [AutoPraeAksorn](https://github.com/bookpanda/AutoPraeAksorn)
 
 | Preview      |     |      |
 |  :----:  |  :----:  |  :----:  |
