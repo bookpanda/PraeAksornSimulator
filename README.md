@@ -6,6 +6,7 @@ You must have Java and JavaFX installed (preferably jdk-19 with JavaFX-sdk-20 )
 - git clone https://github.com/bookpanda/PraeAksornSimulator.git
 - go to the root directory (./PraeAksornSimulator)
 - java -jar --module-path "C:\Program Files\javafx-sdk-20\lib" --add-modules javafx.base,javafx.controls,javafx.graphics,javafx.media,javafx.fxml PraeAksornSimulator.jar
+
 (this path is just an example path to JavaFX library jar files)
 
 ## Introduction
