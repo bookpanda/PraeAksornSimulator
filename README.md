@@ -17,24 +17,17 @@ If the hunger or thirst level is below 100, you cannot flip any pages. Moreover,
 
 ## Scenes
 
-### Home
-<img src="images/home.png" alt= "home" width="40%">
+| Preview      |     |      |
+|  :----:  |  :----:  |  :----:  |
+| <img src="images/home.png" alt= "home" width="100%"> <p>Home</p> | <img src="images/rules.png" alt= "rules" width="100%"> <p>Rules</p> | <img src="images/gameplay_1.png" alt= "gameplay_1" width="100%"> <p>Gameplay 1</p> |
+| <img src="images/gameplay_2.png" alt= "gameplay_2" width="100%"> <p>Gameplay 2</p> | <img src="images/gameplay_3.png" alt= "gameplay_3" width="100%"> <p>Gameplay 3</p> | <img src="images/gameplay_4.png" alt= "gameplay_4" width="100%"> <p>Gameplay 4</p> |
 
-### Rules
-<img src="images/rules.png" alt= "rules" width="40%">
-
-### Gameplay 1
-<img src="images/gameplay_1.png" alt= "home" width="40%">
-
-### Gameplay 2
-<img src="images/gameplay_2.png" alt= "home" width="40%">
-
-### Gameplay 3
-<img src="images/gameplay_3.png" alt= "home" width="40%">
 
 ## Codes
 
-| Syntax      | Preview     | Test Text     |
-| :---        |    :----:   |          ---: |
-| Header      | <img src="src/gameplay_2.png" alt= "home" width="40%">       | Here's this   |
-| Paragraph   | Text        | And more      |
+| Preview      |     |      |
+|  :----:  |  :----:  |  :----:  |
+| <img src="src/images/amogus_stand.png" alt= "amogus" width="100%"> <p>Amogus</p> | <img src="src/images/attack_on_titan_stand.png" alt= "attack_on_titan" width="100%"> <p>Attack on Titan</p> | <img src="src/images/demon_slayer_stand.png" alt= "demon_slayer" width="100%"> <p>Demon Slayer</p> |
+| <img src="src/images/eighty_six_stand.png" alt= "eighty_six" width="100%"> <p>Eighty Six</p> | <img src="src/images/jojo_stand.png" alt= "jojo" width="100%"> <p>Jojo</p> | <img src="src/images/kessoku_stand.png" alt= "kessoku" width="100%"> <p>Kessoku</p> |
+| <img src="src/images/one_piece_stand.png" alt= "one_piece" width="100%"> <p>One Piece</p> | <img src="src/images/oshi_no_ko_stand.png" alt= "oshi_no_ko" width="100%"> <p>Oshi No Ko</p> | <img src="src/images/vinland_saga_stand.png" alt= "vinland_saga" width="100%"> <p>Vinland Saga</p> |
+
