@@ -14,7 +14,7 @@ public class Plate extends StackPane {
 	private static Plate plate = null;
 
 	private Plate() {
-		Image plateFrame = new Image("\\images\\plate-frame.png");
+		Image plateFrame = new Image("images/plate_frame.png");
 		ImageView frameview = new ImageView(plateFrame);
 		GridPane gp = new GridPane();
 		for (int i = 0; i < 5; i++) {
