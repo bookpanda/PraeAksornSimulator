@@ -17,5 +17,24 @@ If the hunger or thirst level is below 100, you cannot flip any pages. Moreover,
 
 ## Scenes
 
-![Home](images/home.png)
 ### Home
+<img src="images/home.png" alt= "home" width="40%">
+
+### Rules
+<img src="images/rules.png" alt= "rules" width="40%">
+
+### Gameplay 1
+<img src="images/gameplay_1.png" alt= "home" width="40%">
+
+### Gameplay 2
+<img src="images/gameplay_2.png" alt= "home" width="40%">
+
+### Gameplay 3
+<img src="images/gameplay_3.png" alt= "home" width="40%">
+
+## Codes
+
+| Syntax      | Preview     | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | <img src="src/gameplay_2.png" alt= "home" width="40%">       | Here's this   |
+| Paragraph   | Text        | And more      |
