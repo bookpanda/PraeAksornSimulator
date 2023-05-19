@@ -1,3 +1,6 @@
+/**
+ * Food and WaterBottle implements Item
+ */
 package components.inventory;
 
 public interface Item {

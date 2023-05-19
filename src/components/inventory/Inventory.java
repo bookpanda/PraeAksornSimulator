@@ -1,3 +1,6 @@
+/**
+ * Inventory is comprised of Slots that are filled with specific items
+ */
 package components.inventory;
 
 import components.code.CodePaper;
@@ -9,6 +12,9 @@ import pane.RootPane;
 public class Inventory extends HBox {
 	private int index;
 
+	/**
+	 * Loads items into Inventory (Plate and CodePaper are items in other packages)
+	 */
 	public Inventory() {
 		this.setWidth(1000);
 		this.setAlignment(Pos.CENTER);
@@ -34,22 +40,26 @@ public class Inventory extends HBox {
 		return index;
 	}
 
+	/**
+	 * Change Inventory's current slot, Food and WaterBottle are displayed as being
+	 * held by right hand, while Plate and CodePaper is displayed in the center
+	 */
 	public void setIndex(int index) {
-		RootPane rp = RootPane.getInstance();
+		RootPane rootPane = RootPane.getInstance();
 		Slot prevSlot = ((Slot) this.getChildren().get(this.index));
 		prevSlot.setActive(false);
 		if (prevSlot.getPos() == "center") {
-			rp.setCenter(null);
+			rootPane.setCenter(null);
 		} else if (prevSlot.getPos() == "right") {
-			rp.setRight(null);
+			rootPane.setRight(null);
 		}
 		this.index = index;
 		Slot newSlot = ((Slot) this.getChildren().get(this.index));
 		newSlot.setActive(true);
 		if (newSlot.getPos() == "center") {
-			rp.setCenter(newSlot.getItem());
+			rootPane.setCenter(newSlot.getItem());
 		} else if (newSlot.getPos() == "right") {
-			rp.setRight(newSlot.getItem());
+			rootPane.setRight(newSlot.getItem());
 		}
 	}
 

@@ -1,3 +1,6 @@
+/**
+ * Each slot in Inventory
+ */
 package components.inventory;
 
 import javafx.scene.Node;
@@ -16,9 +19,12 @@ import javafx.scene.paint.Color;
 public class Slot extends StackPane {
 	private Node item;
 	private String itemName;
-	private boolean active;
+	private boolean isActive;
 	private String pos;
 
+	/**
+	 * Loads item into Slot
+	 */
 	public Slot(Node item, String itemName, boolean active, String pos) {
 		this.setPrefHeight(60);
 		this.setPrefWidth(60);
@@ -49,11 +55,14 @@ public class Slot extends StackPane {
 	}
 
 	public boolean isActive() {
-		return active;
+		return isActive;
 	}
 
+	/**
+	 * Highlights active item 
+	 */
 	public void setActive(boolean active) {
-		this.active = active;
+		this.isActive = active;
 		Color borderColor;
 		Color bgColor;
 		if (active) {

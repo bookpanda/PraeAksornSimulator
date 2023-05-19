@@ -1,3 +1,6 @@
+/**
+ * Water bottle item in Inventory
+ */
 package components.inventory;
 
 import components.stats.StatsBar;
@@ -13,10 +16,8 @@ public class WaterBottle extends HBox implements Item {
 
 	private WaterBottle() {
 		Image image = new Image("images/items/water_bottle_active.png");
-
 		ImageView imageView = new ImageView();
 		imageView.setPreserveRatio(true);
-
 		imageView.setRotate(-15);
 		imageView.setFitHeight(350);
 		imageView.setImage(image);
@@ -25,12 +26,15 @@ public class WaterBottle extends HBox implements Item {
 		this.getChildren().add(imageView);
 	}
 
+	/**
+	 * Drinking water runs a thread that will call ThirstBar's replenish() 
+	 */
 	public void use() {
 		Timer timer = Timer.getInstance();
 		if (timer.isActive()) {
 			ThirstBar thirstBar = ThirstBar.getInstance();
-			UseRunnable ur = new UseRunnable((StatsBar) thirstBar);
-			thread = new Thread(ur);
+			UseRunnable useRunnable = new UseRunnable((StatsBar) thirstBar);
+			thread = new Thread(useRunnable);
 			thread.start();
 		}
 	}

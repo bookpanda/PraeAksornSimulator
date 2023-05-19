@@ -1,3 +1,6 @@
+/**
+ * Runnable for eating and drinking
+ */
 package components.inventory;
 
 import components.stats.StatsBar;
@@ -10,20 +13,18 @@ public class UseRunnable extends Thread {
 		this.statsBar = statsBar;
 		start();
 	}
-	
+
 	@Override
 	public void run() {
 		AmbiencePlayer.loadSound(statsBar.getName());
 		AmbiencePlayer.playSound();
-//		while (!Thread.currentThread().isInterrupted()) {
-			try {
-				Thread.sleep(1000);
-				statsBar.replenish();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-//		}
+		try {
+			Thread.sleep(1000);
+			statsBar.replenish();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		AmbiencePlayer.stopSound();
 	}
 }

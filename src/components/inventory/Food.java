@@ -1,3 +1,6 @@
+/**
+ * Food item in Inventory
+ */
 package components.inventory;
 
 import components.stats.HungerBar;
@@ -13,10 +16,8 @@ public class Food extends HBox implements Item {
 
 	private Food() {
 		Image image = new Image("images/items/food_active.png");
-
 		ImageView imageView = new ImageView();
 		imageView.setPreserveRatio(true);
-
 		imageView.setRotate(-15);
 		imageView.setFitHeight(400);
 		imageView.setImage(image);
@@ -25,12 +26,15 @@ public class Food extends HBox implements Item {
 		this.getChildren().add(imageView);
 	}
 
+	/**
+	 * Eating food runs a thread that will call HungerBar's replenish() 
+	 */
 	public void use() {
 		Timer timer = Timer.getInstance();
 		if (timer.isActive()) {
 			HungerBar hungerBar = HungerBar.getInstance();
-			UseRunnable ur = new UseRunnable((StatsBar) hungerBar);
-			thread = new Thread(ur);
+			UseRunnable useRunnable = new UseRunnable((StatsBar) hungerBar);
+			thread = new Thread(useRunnable);
 			thread.start();
 		}
 	}
