@@ -1,6 +1,13 @@
 # PraeAksornSimulator
 <img src="images/gameplay_2.png" alt= "gameplay_2" width="50%">
 
+## Installation
+You must have Java and JavaFX installed (preferably jdk-19 with JavaFX-sdk-20 )
+- git clone https://github.com/bookpanda/PraeAksornSimulator.git
+- go to the root directory (./PraeAksornSimulator)
+- java -jar --module-path "C:\Program Files\javafx-sdk-20\lib" --add-modules javafx.base,javafx.controls,javafx.graphics,javafx.media,javafx.fxml PraeAksornSimulator.jar
+(this path is just an example path to JavaFX library jar files)
+
 ## Introduction
 PraeAksorn Simulator is inspired by real-life card stunt, which involves assembling a large number of colored papers together to form an image. The objective of this game is to allow you to experience card stunts and form an image within a time limit.
   
